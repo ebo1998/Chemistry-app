@@ -1,0 +1,2678 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>منصة الكيمياء الشاملة والذكاء الاصطناعي | صنع من قبل إبراهيم إسماعيل</title>
+
+  <!-- Google Fonts: Cairo & IBM Plex Mono for chemical formulas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'monospace']
+          },
+          colors: {
+            lab: {
+              emerald: '#10b981',
+              teal: '#0d9488',
+              sapphire: '#0284c7',
+              cyan: '#06b6d4',
+              amber: '#f59e0b'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Strict vertical-only scroll & zero horizontal overflow across all screens */
+    html, body {
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100%;
+      scroll-behavior: smooth;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
+    /* Molecular hexagonal laboratory background pattern */
+    .lab-bg-pattern {
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(16, 185, 129, 0.14) 0%, transparent 38%),
+        radial-gradient(circle at 88% 12%, rgba(2, 132, 199, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(13, 148, 136, 0.10) 0%, transparent 45%),
+        url("data:image/svg+xml,%3Csvg width='64' height='74' viewBox='0 0 64 74' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 2l28 16.5v33L32 68 4 51.5v-33L32 2z' fill='none' stroke='%2310b981' stroke-opacity='0.07' stroke-width='1.25'/%3E%3C/svg%3E");
+    }
+
+    .dark .lab-bg-pattern {
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 85% 18%, rgba(14, 165, 233, 0.15) 0%, transparent 42%),
+        radial-gradient(circle at 50% 90%, rgba(20, 184, 166, 0.12) 0%, transparent 48%),
+        url("data:image/svg+xml,%3Csvg width='64' height='74' viewBox='0 0 64 74' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 2l28 16.5v33L32 68 4 51.5v-33L32 2z' fill='none' stroke='%2334d399' stroke-opacity='0.08' stroke-width='1.25'/%3E%3C/svg%3E");
+    }
+
+    .glass-panel {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .formula-ltr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.15);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(16, 185, 129, 0.45);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(16, 185, 129, 0.75);
+    }
+  </style>
+</head>
+
+<body class="lab-bg-pattern bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+
+  <!-- Top Laboratory Navigation Header -->
+  <header class="sticky top-0 z-40 glass-panel bg-white/90 dark:bg-slate-900/90 border-b border-emerald-500/20 shadow-sm w-full overflow-x-hidden">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 space-y-3">
+      <!-- Top Bar: Brand + Controls -->
+      <div class="flex flex-wrap items-center justify-between gap-2 min-w-0">
+        <!-- Brand Identity -->
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-600 to-sky-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/25 shrink-0 ring-2 ring-emerald-400/30">
+            <i class="fa-solid fa-atom text-xl sm:text-2xl"></i>
+          </div>
+          <div class="min-w-0">
+            <div class="flex flex-wrap items-center gap-2">
+              <h1 class="text-sm sm:text-xl font-black bg-gradient-to-l from-emerald-600 via-teal-600 to-sky-600 dark:from-emerald-300 dark:via-teal-300 dark:to-sky-400 bg-clip-text text-transparent break-words">
+                منصة الكيمياء الشاملة والذكاء الاصطناعي
+              </h1>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 whitespace-nowrap">
+                إبراهيم إسماعيل
+              </span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-semibold break-words">
+              مختبر رقمي متكامل • المناهج العراقية والعالمية • مجاني بالكامل بدون إعلانات
+            </p>
+          </div>
+        </div>
+
+        <!-- Utility Controls: Font Size, Theme, AI Assistant -->
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0 flex-wrap">
+          <div class="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl p-1 border border-slate-200 dark:border-slate-700">
+            <button type="button" onclick="adjustFontSize(-1)" title="تصغير الخط" class="w-7 h-7 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-extrabold transition">A-</button>
+            <button type="button" onclick="adjustFontSize(0)" title="حجم افتراضي" class="w-7 h-7 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-extrabold transition">A</button>
+            <button type="button" onclick="adjustFontSize(1)" title="تكبير الخط" class="w-7 h-7 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-sm font-extrabold transition">A+</button>
+          </div>
+
+          <button type="button" onclick="toggleColorTheme()" title="تبديل الوضع الليلي والنهاري" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500/15 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-300 transition">
+            <i id="themeIcon" class="fa-solid fa-sun text-sm sm:text-base"></i>
+          </button>
+
+          <button type="button" onclick="openAIDrawer()" class="flex items-center gap-2 px-3 sm:px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 hover:brightness-110 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-emerald-600/25 transition active:scale-95">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>المساعد الذكي AI</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5-Section Wrapping Grid Navigation (Zero Horizontal Scroll) -->
+      <nav aria-label="أقسام المنصة" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 pt-1">
+        <button type="button" onclick="switchSection('library')" id="nav-library" class="nav-tab-btn active p-2.5 px-3 rounded-xl font-extrabold text-xs flex items-center justify-center gap-2 transition bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-600/20 min-w-0">
+          <i class="fa-solid fa-book-atlas shrink-0"></i>
+          <span class="truncate">1. المصادر والبحوث</span>
+        </button>
+
+        <button type="button" onclick="switchSection('exams')" id="nav-exams" class="nav-tab-btn p-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 min-w-0">
+          <i class="fa-solid fa-graduation-cap shrink-0 text-sky-500"></i>
+          <span class="truncate">2. الامتحانات والتنافسي</span>
+        </button>
+
+        <button type="button" onclick="switchSection('calculator')" id="nav-calculator" class="nav-tab-btn p-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 min-w-0">
+          <i class="fa-solid fa-calculator shrink-0 text-emerald-500"></i>
+          <span class="truncate">3. الحاسبة الشاملة</span>
+        </button>
+
+        <button type="button" onclick="switchSection('curriculum')" id="nav-curriculum" class="nav-tab-btn p-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 min-w-0">
+          <i class="fa-solid fa-landmark-flag shrink-0 text-amber-500"></i>
+          <span class="truncate">4. الكتب والمراحل</span>
+        </button>
+
+        <button type="button" onclick="switchSection('unions')" id="nav-unions" class="nav-tab-btn col-span-2 sm:col-span-1 p-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 min-w-0">
+          <i class="fa-solid fa-users-gear shrink-0 text-cyan-500"></i>
+          <span class="truncate">5. النقابات وكركوك والمحافظات</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Vertical Content Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 space-y-8 overflow-x-hidden">
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 1: VERIFIED RESEARCH, SOURCES & BOOKS LIBRARY                 -->
+    <!-- ===================================================================== -->
+    <section id="section-library" class="platform-section space-y-6 min-w-0">
+      <!-- Lab Hero Banner -->
+      <div class="rounded-3xl bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 border border-emerald-500/30 p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl space-y-3">
+          <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-extrabold">
+            <i class="fa-solid fa-flask text-emerald-300"></i>
+            <span>القسم الأول • أرشيف البحوث والمصادر والكتب الموثقة</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black leading-tight break-words">
+            مكتبة البحوث والمصادر والكتب الكيميائية مع توثيق المصدر والجهة المانحة
+          </h2>
+          <p class="text-slate-200/90 text-xs sm:text-sm leading-relaxed break-words">
+            كل مصدر وكتاب وبحث علمي هنا يعرض بوضوح <strong>اسم المصدر والجهة أو المؤلف الموثق</strong>، مع إمكانية فتح البوابة الرسمية، توليد ملخص PDF دراسي فوري، أو مناقشته مع الذكاء الاصطناعي.
+          </p>
+        </div>
+        <i class="fa-solid fa-atom absolute -left-8 -bottom-8 text-[140px] text-emerald-400/10 pointer-events-none"></i>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 min-w-0">
+        <div class="flex flex-col md:flex-row gap-3">
+          <div class="relative flex-grow min-w-0">
+            <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500"></i>
+            <input type="text" id="libSearchInput" oninput="renderLibraryGrid()" placeholder="ابحث باسم الكتاب، البحث، المصدر، المؤلف، أو التخصص (IUPAC, Harris, Clayden, العراق)..." class="w-full pr-11 pl-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none text-xs sm:text-sm" />
+          </div>
+          <button type="button" onclick="askAIForSources()" class="px-5 py-3 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-600 hover:brightness-110 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shrink-0 transition shadow-sm">
+            <i class="fa-solid fa-robot"></i>
+            <span>بحث أكاديمي عبر AI</span>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-2" id="libCategoryPills">
+          <button type="button" data-cat="all" onclick="selectLibCategory('all', this)" class="lib-pill px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-600 text-white transition">الكل</button>
+          <button type="button" data-cat="مناهج ومجلات عراقية" onclick="selectLibCategory('مناهج ومجلات عراقية', this)" class="lib-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 transition">مناهج ومجلات عراقية</button>
+          <button type="button" data-cat="قواعد بيانات وموسوعات" onclick="selectLibCategory('قواعد بيانات وموسوعات', this)" class="lib-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 transition">قواعد بيانات وموسوعات</button>
+          <button type="button" data-cat="الكيمياء العضوية" onclick="selectLibCategory('الكيمياء العضوية', this)" class="lib-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 transition">الكيمياء العضوية</button>
+          <button type="button" data-cat="الكيمياء التحليلية" onclick="selectLibCategory('الكيمياء التحليلية', this)" class="lib-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 transition">الكيمياء التحليلية</button>
+          <button type="button" data-cat="الكيمياء الفيزيائية" onclick="selectLibCategory('الكيمياء الفيزيائية', this)" class="lib-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 transition">الكيمياء الفيزيائية</button>
+          <button type="button" data-cat="اللاعضوية والحياتية" onclick="selectLibCategory('اللاعضوية والحياتية', this)" class="lib-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-500/15 transition">اللاعضوية والحياتية</button>
+        </div>
+      </div>
+
+      <!-- Library Cards Grid -->
+      <div id="libraryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 min-w-0"></div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 2: QUESTION BANK & COMPETITIVE EXAM SIMULATOR                 -->
+    <!-- ===================================================================== -->
+    <section id="section-exams" class="platform-section hidden space-y-6 min-w-0">
+      <!-- Exams Hero Banner -->
+      <div class="rounded-3xl bg-gradient-to-br from-sky-900 via-teal-900 to-emerald-950 border border-sky-500/30 p-6 sm:p-8 text-white shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div class="max-w-2xl space-y-2.5 min-w-0">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-200 text-xs font-extrabold">
+            <i class="fa-solid fa-trophy text-amber-300"></i>
+            <span>القسم الثاني • بنك الأسئلة ومحاكي الاختبار التنافسي</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black leading-tight break-words">
+            أسئلة التنافسي، السنوات السابقة والحالية، ومختبر الاختبار التنافسي التعليمي
+          </h2>
+          <p class="text-slate-200/90 text-xs sm:text-sm leading-relaxed break-words">
+            يضم أسئلة التنافسي (الماجستير والدكتوراه)، الأسئلة الوزارية للسادس العلمي، الأولمبياد، والأسئلة المبتكرة، مع محاكي اختبار تنافسي تعليمي بمؤقت وشرح تفصيلي ومولد أسئلة فوري بالذكاء الاصطناعي.
+          </p>
+        </div>
+
+        <div class="bg-white/10 glass-panel rounded-2xl p-4 border border-white/15 shrink-0 w-full lg:w-auto min-w-[210px] text-center">
+          <div class="text-xs text-sky-200 font-bold">أعلى نتيجة في الاختبار التنافسي</div>
+          <div id="examHighScore" class="text-3xl font-black text-amber-300 my-1">0%</div>
+          <div id="examCompletedCount" class="text-[11px] text-slate-200">الاختبارات المكتملة: 0</div>
+        </div>
+      </div>
+
+      <!-- AI Custom Question Generator Card -->
+      <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 border border-emerald-500/30 shadow-sm space-y-4 min-w-0">
+        <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+          <div class="flex items-start gap-3 min-w-0">
+            <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-microscope text-xl"></i>
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-extrabold text-sm sm:text-base break-words">مولد الأسئلة التنافسية والتعليمية بالذكاء الاصطناعي</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 break-words">
+                اكتب أي موضوع أو فكرة كيميائية في بالك (مثل: التهجين، قانون هيس، الكيمياء التناسقية، التسحيح، أو حركية التفاعلات) لتوليد أسئلة جديدة وإضافتها فوراً إلى الاختبار.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-2 shrink-0">
+            <input type="text" id="aiQuestionTopicInput" placeholder="اكتب موضوع السؤال هنا..." class="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-emerald-500 min-w-0 sm:min-w-[230px]" />
+            <button type="button" id="generateAiQuestionsBtn" onclick="createAIQuestions()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:brightness-110 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-md">
+              <i class="fa-solid fa-wand-sparkles"></i>
+              <span>توليد أسئلة الآن</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam Configuration Panel -->
+      <div id="examSetupBox" class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 min-w-0">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+          <h3 class="font-black text-base sm:text-lg flex items-center gap-2">
+            <i class="fa-solid fa-sliders text-emerald-500"></i>
+            <span>إعداد الاختبار التنافسي التعليمي</span>
+          </h3>
+          <span class="text-xs font-bold text-slate-500 dark:text-slate-400">
+            إجمالي الأسئلة في البنك: <strong id="totalQuestionsInBank" class="text-emerald-600 dark:text-emerald-400">0</strong> سؤال
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="min-w-0">
+            <label class="block text-xs font-extrabold text-slate-600 dark:text-slate-300 mb-1.5">تصنيف الأسئلة</label>
+            <select id="examCategoryFilter" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-500">
+              <option value="all">شامل (تنافسي + وزاري + أولمبياد + ذكاء)</option>
+              <option value="تنافسي دراسات عليا">أسئلة التنافسي (ماجستير / دكتوراه)</option>
+              <option value="وزاري وسنوات سابقة">أسئلة وزارية وسنوات سابقة وحديثة</option>
+              <option value="أولمبياد وأسئلة ذكاء">أولمبياد الكيمياء وأسئلة الذكاء المتقدمة</option>
+              <option value="مولدة بالذكاء الاصطناعي">الأسئلة المولدة بالذكاء الاصطناعي AI</option>
+            </select>
+          </div>
+
+          <div class="min-w-0">
+            <label class="block text-xs font-extrabold text-slate-600 dark:text-slate-300 mb-1.5">عدد أسئلة الاختبار</label>
+            <select id="examQuestionCount" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-500">
+              <option value="5">5 أسئلة (اختبار سريع)</option>
+              <option value="8" selected>8 أسئلة (اختبار تنافسي متوسط)</option>
+              <option value="12">12 سؤال (اختبار شامل)</option>
+              <option value="999">جميع الأسئلة المتاحة</option>
+            </select>
+          </div>
+
+          <div class="min-w-0">
+            <label class="block text-xs font-extrabold text-slate-600 dark:text-slate-300 mb-1.5">نمط التدريب والوقت</label>
+            <select id="examModeSelect" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-500">
+              <option value="educational">تعليمي تفاعلي (شرح فوري لكل سؤال)</option>
+              <option value="timed">تنافسي بمؤقت (دقيقة لكل سؤال)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex justify-end pt-2">
+          <button type="button" onclick="startCompetitiveQuiz()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 hover:brightness-110 text-white font-black text-sm shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 transition active:scale-95">
+            <i class="fa-solid fa-play"></i>
+            <span>بدء الاختبار التنافسي التعليمي</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Quiz Stage -->
+      <div id="quizStageBox" class="hidden bg-white dark:bg-slate-900/95 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-md space-y-6 min-w-0">
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="quizCounterBadge" class="px-3 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-extrabold text-xs">سؤال 1 من 8</span>
+            <span id="quizCatBadge" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs">تنافسي</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <div id="quizTimerBadge" class="hidden items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 text-amber-700 dark:text-amber-300 font-extrabold text-xs">
+              <i class="fa-regular fa-clock"></i>
+              <span id="quizTimerDisplay">08:00</span>
+            </div>
+            <div class="text-xs sm:text-sm font-black text-emerald-600 dark:text-emerald-400">
+              الدرجة: <span id="quizScoreDisplay">0</span>
+            </div>
+            <button type="button" onclick="abortQuizToSetup()" class="text-xs font-bold text-rose-500 hover:underline">إنهاء</button>
+          </div>
+        </div>
+
+        <div class="space-y-2 min-w-0">
+          <div id="quizMetaSource" class="text-xs font-bold text-sky-600 dark:text-sky-400 break-words">المصدر: ...</div>
+          <h3 id="quizQuestionTitle" class="text-base sm:text-xl font-black leading-relaxed text-slate-900 dark:text-white break-words"></h3>
+        </div>
+
+        <div id="quizChoicesList" class="grid grid-cols-1 gap-3 min-w-0"></div>
+
+        <div id="quizFeedbackBox" class="hidden rounded-2xl p-4 sm:p-5 bg-emerald-500/10 border border-emerald-500/30 space-y-2.5 min-w-0">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div id="quizFeedbackHeading" class="font-extrabold text-sm"></div>
+            <button type="button" onclick="askAIExplainCurrentQuestion()" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-emerald-500/40 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold hover:bg-emerald-500/10 transition flex items-center gap-1.5">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>شرح أعمق بالذكاء الاصطناعي</span>
+            </button>
+          </div>
+          <p id="quizFeedbackExplanation" class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed break-words"></p>
+        </div>
+
+        <div class="flex justify-end">
+          <button type="button" id="quizNextBtn" onclick="advanceQuizQuestion()" class="hidden px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm items-center gap-2 transition">
+            <span>السؤال التالي</span>
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quiz Summary Report -->
+      <div id="quizSummaryBox" class="hidden bg-white dark:bg-slate-900/95 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-lg text-center space-y-6 min-w-0">
+        <div class="w-16 h-16 rounded-2xl bg-amber-500/15 text-amber-500 flex items-center justify-center mx-auto text-3xl">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <div>
+          <h3 class="text-2xl font-black">نتيجة الاختبار التنافسي التعليمي</h3>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">تحليل الأداء والمواضيع المقترحة للمراجعة</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 max-w-lg mx-auto">
+          <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800">
+            <div class="text-[11px] text-slate-500">النسبة</div>
+            <div id="summaryPercent" class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1">0%</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-emerald-500/10">
+            <div class="text-[11px] text-emerald-700 dark:text-emerald-300">صحيح</div>
+            <div id="summaryCorrect" class="text-2xl font-black text-emerald-600 mt-1">0</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-rose-500/10">
+            <div class="text-[11px] text-rose-700 dark:text-rose-300">خطأ</div>
+            <div id="summaryWrong" class="text-2xl font-black text-rose-600 mt-1">0</div>
+          </div>
+        </div>
+
+        <div class="max-w-2xl mx-auto text-right p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 space-y-1.5">
+          <div class="font-extrabold text-xs sm:text-sm text-amber-700 dark:text-amber-300">تشخيص نقاط المراجعة:</div>
+          <p id="summaryWeakText" class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed break-words"></p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          <button type="button" onclick="resetQuizToSetup()" class="px-6 py-3 rounded-xl bg-slate-800 dark:bg-slate-700 hover:opacity-90 text-white font-extrabold text-xs sm:text-sm transition">
+            إجراء اختبار جديد
+          </button>
+          <button type="button" onclick="askAIForWeakTopicsPlan()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-sky-600 hover:brightness-110 text-white font-extrabold text-xs sm:text-sm transition">
+            <i class="fa-solid fa-wand-magic-sparkles ml-1"></i> خطة مراجعة من AI
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 3: MULTI-BRANCH CHEMISTRY CALCULATOR (6 BRANCHES + AI)        -->
+    <!-- ===================================================================== -->
+    <section id="section-calculator" class="platform-section hidden space-y-6 min-w-0">
+      <!-- Calculator Hero -->
+      <div class="rounded-3xl bg-gradient-to-br from-teal-900 via-emerald-900 to-cyan-950 border border-teal-500/30 p-6 sm:p-8 text-white shadow-xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-200 text-xs font-extrabold mb-3">
+          <i class="fa-solid fa-square-root-variable text-amber-300"></i>
+          <span>القسم الثالث • الحاسبة الكيميائية الشاملة (6 فروع)</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black leading-tight break-words">
+          حسابات العمليات والمعادلات الكيميائية (الدراسات العراقية والعالمية)
+        </h2>
+        <p class="text-slate-200/90 text-xs sm:text-sm leading-relaxed mt-2 max-w-3xl break-words">
+          اختر الفرع الكيميائي لإجراء الحسابات الدقيقة مع عرض القانون، خطوات التعويض، الناتج النهائي، وموازن المعادلات الكيميائية وحل المسائل المعقدة بالذكاء الاصطناعي.
+        </p>
+      </div>
+
+      <!-- 6 Branches Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+        <button type="button" data-branch="analytical" onclick="selectCalcBranch('analytical', this)" class="calc-branch-tab active p-3 rounded-2xl border-2 border-emerald-500 bg-emerald-500/15 text-emerald-800 dark:text-emerald-200 font-extrabold text-xs flex flex-col items-center gap-1.5 text-center transition min-w-0">
+          <i class="fa-solid fa-vial text-lg"></i>
+          <span class="break-words">التحليلية والمحاليل</span>
+        </button>
+
+        <button type="button" data-branch="equilibrium" onclick="selectCalcBranch('equilibrium', this)" class="calc-branch-tab p-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500/50 font-bold text-xs flex flex-col items-center gap-1.5 text-center transition min-w-0">
+          <i class="fa-solid fa-droplet text-lg text-sky-500"></i>
+          <span class="break-words">التوازن الأيوني و pH</span>
+        </button>
+
+        <button type="button" data-branch="thermo" onclick="selectCalcBranch('thermo', this)" class="calc-branch-tab p-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500/50 font-bold text-xs flex flex-col items-center gap-1.5 text-center transition min-w-0">
+          <i class="fa-solid fa-fire-flame-curved text-lg text-amber-500"></i>
+          <span class="break-words">الثرموديناميك</span>
+        </button>
+
+        <button type="button" data-branch="electro" onclick="selectCalcBranch('electro', this)" class="calc-branch-tab p-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500/50 font-bold text-xs flex flex-col items-center gap-1.5 text-center transition min-w-0">
+          <i class="fa-solid fa-bolt text-lg text-cyan-500"></i>
+          <span class="break-words">الكيمياء الكهربائية</span>
+        </button>
+
+        <button type="button" data-branch="gases" onclick="selectCalcBranch('gases', this)" class="calc-branch-tab p-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500/50 font-bold text-xs flex flex-col items-center gap-1.5 text-center transition min-w-0">
+          <i class="fa-solid fa-wind text-lg text-teal-500"></i>
+          <span class="break-words">الغازات والحركية</span>
+        </button>
+
+        <button type="button" data-branch="molar" onclick="selectCalcBranch('molar', this)" class="calc-branch-tab p-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500/50 font-bold text-xs flex flex-col items-center gap-1.5 text-center transition min-w-0">
+          <i class="fa-solid fa-scale-balanced text-lg text-emerald-500"></i>
+          <span class="break-words">الكتلة والمعادلات</span>
+        </button>
+      </div>
+
+      <!-- Calculator Workspace -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-w-0">
+        <!-- Input Panel -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 min-w-0">
+
+          <!-- 1. Analytical & Solutions -->
+          <div id="branch-panel-analytical" class="branch-panel space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h3 class="font-black text-sm sm:text-base text-emerald-700 dark:text-emerald-300">حسابات الكيمياء التحليلية والمحاليل</h3>
+              <select id="analyticalModeSelect" onchange="buildAnalyticalInputs()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold outline-none">
+                <option value="molarity">المولارية (M) والكتلة المذابة</option>
+                <option value="normality">العيارية (N) والكتلة المكافئة (η)</option>
+                <option value="dilution">التخفيف الكيميائي (M1·V1 = M2·V2)</option>
+                <option value="ppm">التركيز بـ (ppm)</option>
+              </select>
+            </div>
+            <div id="analyticalFieldsBox" class="space-y-3"></div>
+          </div>
+
+          <!-- 2. Equilibrium & pH -->
+          <div id="branch-panel-equilibrium" class="branch-panel hidden space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h3 class="font-black text-sm sm:text-base text-sky-700 dark:text-sky-300">التوازن الأيوني والأس الهيدروجيني (pH / pOH)</h3>
+              <select id="equilibriumModeSelect" onchange="buildEquilibriumInputs()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold outline-none">
+                <option value="strong">إلكتروليت قوي (حامض / قاعدة)</option>
+                <option value="weak">حامض أو قاعدة ضعيفة (Ka / Kb)</option>
+                <option value="buffer">محلول بفر (هندرسون-هاسلبالخ)</option>
+                <option value="ksp">الذوبانية المولارية وحاصل الذوبانية (Ksp)</option>
+              </select>
+            </div>
+            <div id="equilibriumFieldsBox" class="space-y-3"></div>
+          </div>
+
+          <!-- 3. Thermodynamics -->
+          <div id="branch-panel-thermo" class="branch-panel hidden space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h3 class="font-black text-sm sm:text-base text-amber-700 dark:text-amber-300">الثرموديناميك والكيمياء الحرارية</h3>
+              <select id="thermoModeSelect" onchange="buildThermoInputs()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold outline-none">
+                <option value="gibbs">طاقة كبس الحرة (ΔG = ΔH - TΔS)</option>
+                <option value="heat">كمية الحرارة (q = m · c · ΔT)</option>
+              </select>
+            </div>
+            <div id="thermoFieldsBox" class="space-y-3"></div>
+          </div>
+
+          <!-- 4. Electrochemistry -->
+          <div id="branch-panel-electro" class="branch-panel hidden space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h3 class="font-black text-sm sm:text-base text-cyan-700 dark:text-cyan-300">الكيمياء الكهربائية وفاراداي ونيرنست</h3>
+              <select id="electroModeSelect" onchange="buildElectroInputs()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold outline-none">
+                <option value="ecell">جهد الخلية القياسي (E°cell)</option>
+                <option value="nernst">معادلة نيرنست (Ecell)</option>
+                <option value="faraday">قانون فاراداي للترسيب الكهربائي</option>
+              </select>
+            </div>
+            <div id="electroFieldsBox" class="space-y-3"></div>
+          </div>
+
+          <!-- 5. Gases & Kinetics -->
+          <div id="branch-panel-gases" class="branch-panel hidden space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h3 class="font-black text-sm sm:text-base text-teal-700 dark:text-teal-300">الغازات والحركية الكيميائية</h3>
+              <select id="gasesModeSelect" onchange="buildGasesInputs()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold outline-none">
+                <option value="ideal">قانون الغاز المثالي (PV = nRT)</option>
+                <option value="halflife">عمر النصف للمرتبة الأولى (t½)</option>
+              </select>
+            </div>
+            <div id="gasesFieldsBox" class="space-y-3"></div>
+          </div>
+
+          <!-- 6. Molar Mass & Chemical Equation Balancer -->
+          <div id="branch-panel-molar" class="branch-panel hidden space-y-5">
+            <div class="border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h3 class="font-black text-sm sm:text-base text-emerald-700 dark:text-emerald-300">الكتلة المولية وموازن المعادلات الكيميائية</h3>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 space-y-3">
+              <label class="block text-xs font-extrabold">حساب الكتلة المولية (يدعم الأقواس مثل Ca(OH)2 و Fe2(SO4)3):</label>
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input type="text" id="molarInputFormula" value="H2SO4" class="formula-ltr flex-grow px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-bold text-sm outline-none focus:ring-2 focus:ring-emerald-500" />
+                <button type="button" onclick="computeMolarMass()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm transition">احسب الكتلة</button>
+              </div>
+              <div class="flex flex-wrap gap-1.5 text-xs">
+                <button type="button" onclick="presetFormula('H2SO4')" class="formula-ltr px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-700 font-semibold">H2SO4</button>
+                <button type="button" onclick="presetFormula('Ca(OH)2')" class="formula-ltr px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-700 font-semibold">Ca(OH)2</button>
+                <button type="button" onclick="presetFormula('KMnO4')" class="formula-ltr px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-700 font-semibold">KMnO4</button>
+                <button type="button" onclick="presetFormula('C6H12O6')" class="formula-ltr px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-700 font-semibold">C6H12O6</button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/25 space-y-3">
+              <label class="block text-xs font-extrabold text-sky-800 dark:text-sky-200">
+                <i class="fa-solid fa-wand-magic-sparkles ml-1"></i> موازنة أي معادلة كيميائية بالذكاء الاصطناعي:
+              </label>
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input type="text" id="equationInputBox" placeholder="Fe + O2 -> Fe2O3" class="formula-ltr flex-grow px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-sky-400/50 text-sm outline-none focus:ring-2 focus:ring-sky-500" />
+                <button type="button" onclick="balanceEquationAI()" class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs sm:text-sm transition shrink-0">وازن بـ AI</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output & Steps Panel -->
+        <div class="lg:col-span-5 space-y-4 min-w-0">
+          <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 min-w-0">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h4 class="font-black text-sm flex items-center gap-2">
+                <i class="fa-solid fa-square-check text-emerald-500"></i>
+                <span>النتيجة وخطوات الحل</span>
+              </h4>
+              <button type="button" id="aiExplainCalcBtn" onclick="explainLastCalcAI()" class="hidden px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-sky-600 text-white text-xs font-extrabold flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>اشرح بـ AI</span>
+              </button>
+            </div>
+
+            <div id="calcOutputCard" class="min-h-[190px] flex flex-col justify-center items-center text-center p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-dashed border-slate-300 dark:border-slate-700 min-w-0">
+              <i class="fa-solid fa-flask-vial text-3xl text-emerald-500/50 mb-2"></i>
+              <p class="text-xs text-slate-500 dark:text-slate-400">أدخل القيم واضغط زر الحساب لعرض القانون، التعويض، والنتيجة النهائية.</p>
+            </div>
+
+            <div class="pt-2 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-extrabold text-slate-500 dark:text-slate-400">سجل الحسابات الأخيرة</span>
+                <button type="button" onclick="clearCalcLog()" class="text-[11px] font-bold text-rose-500 hover:underline">مسح السجل</button>
+              </div>
+              <div id="calcLogList" class="space-y-1.5 max-h-36 overflow-y-auto text-xs"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 4: IRAQI CURRICULUM BOOKS & STAGES (WITH WORKING PDF MODAL)  -->
+    <!-- ===================================================================== -->
+    <section id="section-curriculum" class="platform-section hidden space-y-6 min-w-0">
+      <!-- Curriculum Hero -->
+      <div class="rounded-3xl bg-gradient-to-br from-emerald-900 via-slate-900 to-sky-950 border border-emerald-500/30 p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl space-y-2.5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-200 text-xs font-extrabold">
+            <i class="fa-solid fa-book-open-reader"></i>
+            <span>القسم الرابع • كتب والمراحل المنهجية في العراق</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black leading-tight break-words">
+            من الأول المتوسط إلى السادس العلمي، والجامعات، وعلوم الكيمياء، والعلوم الصرفة، ومعاهد النفط
+          </h2>
+          <p class="text-slate-200/90 text-xs sm:text-sm leading-relaxed break-words">
+            عرض وفتح وتحميل فوري ومضمون لملفات ومذكرات/كتب PDF المنهجية داخل المنصة دون أخطاء فتح أو تحميل، مع روابط البوابات الرسمية لوزارة التربية العراقية وتفصيل المراحل الجامعية ومعاهد التدريب النفطي.
+          </p>
+        </div>
+      </div>
+
+      <!-- AI Iraqi Stage Advisor -->
+      <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 border border-emerald-500/30 shadow-sm space-y-4 min-w-0">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+          </div>
+          <div class="min-w-0">
+            <h3 class="font-extrabold text-sm sm:text-base break-words">مستشار المراحل والمناهج العراقية بالذكاء الاصطناعي</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 break-words">اختر المرحلة الدراسية أو الكلية واكتب اسم الفصل أو الموضوع للحصول على شرح وتلخيص وفق المنهج العراقي.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+          <div class="md:col-span-4 min-w-0">
+            <select id="iraqiStageSelector" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-500">
+              <option value="الصف الأول المتوسط - المنهج العراقي">الصف الأول المتوسط (العراق)</option>
+              <option value="الصف الثاني المتوسط - المنهج العراقي">الصف الثاني المتوسط (العراق)</option>
+              <option value="الصف الثالث المتوسط - المنهج العراقي">الصف الثالث المتوسط (العراق)</option>
+              <option value="الصف الرابع العلمي - المنهج العراقي">الصف الرابع العلمي (العراق)</option>
+              <option value="الصف الخامس العلمي - المنهج العراقي">الصف الخامس العلمي (العراق)</option>
+              <option value="الصف السادس العلمي - المنهج العراقي" selected>الصف السادس العلمي (العراق)</option>
+              <option value="كلية العلوم - قسم علوم الكيمياء">كلية العلوم - قسم علوم الكيمياء</option>
+              <option value="كلية التربية للعلوم الصرفة - قسم الكيمياء">كلية التربية للعلوم الصرفة - الكيمياء</option>
+              <option value="معاهد التدريب النفطي العراقية">معاهد التدريب النفطي العراقية</option>
+              <option value="الهندسة الكيمياوية والصيدلة والتحليلات">الهندسة الكيمياوية والصيدلة والتحليلات</option>
+            </select>
+          </div>
+          <div class="md:col-span-5 min-w-0">
+            <input type="text" id="iraqiTopicBox" placeholder="اكتب اسم الفصل أو الموضوع (مثال: الاتزان الأيوني، التحليلات النفطية)..." class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-emerald-500" />
+          </div>
+          <div class="md:col-span-3 min-w-0">
+            <button type="button" onclick="askIraqiStageAI()" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:brightness-110 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+              <i class="fa-solid fa-robot"></i>
+              <span>شرح عبر AI</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curriculum Sub-Tabs -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <button type="button" id="curr-btn-schools" onclick="switchCurriculumTab('schools')" class="p-3.5 px-4 rounded-2xl font-extrabold text-xs sm:text-sm bg-emerald-600 text-white shadow-sm flex items-center justify-center gap-2 transition">
+          <i class="fa-solid fa-book"></i>
+          <span>الكتب المدرسية (الأول المتوسط – السادس العلمي)</span>
+        </button>
+        <button type="button" id="curr-btn-higher" onclick="switchCurriculumTab('higher')" class="p-3.5 px-4 rounded-2xl font-extrabold text-xs sm:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500/50 flex items-center justify-center gap-2 transition">
+          <i class="fa-solid fa-university"></i>
+          <span>الجامعات، علوم الكيمياء، العلوم الصرفة، ومعاهد النفط</span>
+        </button>
+      </div>
+
+      <!-- School Books Grid -->
+      <div id="curriculum-schools-view" class="space-y-4 min-w-0">
+        <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex flex-wrap items-center justify-between gap-3">
+          <div class="text-xs sm:text-sm font-bold text-emerald-900 dark:text-emerald-200 flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-emerald-500 text-base"></i>
+            <span>يمكنك قراءة وتنزيل كتيب/ملف المنهج وملخصه مباشرة عبر نافذة PDF المدمجة الموثوقة، أو زيارة بوابة وزارة التربية العراقية الرسمية.</span>
+          </div>
+          <a href="https://manahj.edu.iq/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-extrabold flex items-center gap-1.5 transition shrink-0">
+            <i class="fa-solid fa-up-right-from-square"></i>
+            <span>بوابة المناهج العراقية (manahj.edu.iq)</span>
+          </a>
+        </div>
+
+        <div id="schoolBooksCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 min-w-0"></div>
+      </div>
+
+      <!-- Universities, Pure Sciences, Oil Institutes & Allied Departments View -->
+      <div id="curriculum-higher-view" class="hidden space-y-6 min-w-0">
+        <!-- Stages Overview Stepper -->
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <h3 class="font-black text-base mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-diagram-project text-emerald-500"></i>
+            <span>تسلسل المراحل والتخصصات الكيميائية في العراق</span>
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25">
+              <div class="text-[11px] font-black text-emerald-600 dark:text-emerald-400">المرحلة الجامعية • 4 سنوات</div>
+              <div class="font-extrabold text-sm mt-0.5">كلية العلوم - علوم الكيمياء</div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">تخصص كيميائي أكاديمي شامل في جميع الفروع.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-sky-500/10 border border-sky-500/25">
+              <div class="text-[11px] font-black text-sky-600 dark:text-sky-400">المرحلة الجامعية • 4 سنوات</div>
+              <div class="font-extrabold text-sm mt-0.5">كلية التربية للعلوم الصرفة</div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">كيمياء صرفة وتطبيقية مع إعداد تربوي وتعليمي.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25">
+              <div class="text-[11px] font-black text-amber-600 dark:text-amber-400">الدبلوم التقني • سنتان</div>
+              <div class="font-extrabold text-sm mt-0.5">معاهد التدريب النفطي</div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">التحليلات النفطية، التشغيل والسيطرة، وتقنية الغاز.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-teal-500/10 border border-teal-500/25">
+              <div class="text-[11px] font-black text-teal-600 dark:text-teal-400">تخصصات تطبيقية وطبية</div>
+              <div class="font-extrabold text-sm mt-0.5">الهندسة الكيمياوية والصيدلة</div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">وتحليلات مرضية وأدلة جنائية وعلوم الأغذية.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="higherEdCardsContainer" class="space-y-5 min-w-0"></div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 5 (NEW): GLOBAL & IRAQI CHEMISTS UNIONS & KIRKUK / GOVERNORATES -->
+    <!-- ===================================================================== -->
+    <section id="section-unions" class="platform-section hidden space-y-6 min-w-0">
+      <!-- Unions Hero -->
+      <div class="rounded-3xl bg-gradient-to-br from-cyan-950 via-teal-900 to-emerald-950 border border-cyan-500/30 p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl space-y-2.5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-200 text-xs font-extrabold">
+            <i class="fa-solid fa-users-gear"></i>
+            <span>القسم الخامس • نقابات واتحادات الكيميائيين العالمية والعراقية</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black leading-tight break-words">
+            النقابات والجمعيات الكيميائية في العالم والعراق وفروعها في كركوك وجميع المحافظات
+          </h2>
+          <p class="text-slate-200/90 text-xs sm:text-sm leading-relaxed break-words">
+            دليل منظم يجمع الهيئات والنقابات والاتحادات الكيميائية العالمية والعربية ونقابة الكيميائيين العراقية مع تفصيل الفروع والتمثيل النقابي في <strong>كركوك</strong> و<strong>جميع محافظات العراق</strong> المرتبط بالذكاء الاصطناعي.
+          </p>
+        </div>
+      </div>
+
+      <!-- Filter & AI Union Lookup Bar -->
+      <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 min-w-0">
+        <div class="flex flex-col md:flex-row gap-3">
+          <div class="relative flex-grow min-w-0">
+            <i class="fa-solid fa-location-dot absolute right-4 top-1/2 -translate-y-1/2 text-cyan-500"></i>
+            <input type="text" id="unionSearchInput" oninput="renderUnionsSection()" placeholder="ابحث عن نقابة أو اتحاد أو محافظة (مثل: كركوك، بغداد، البصرة، نينوى، IUPAC، ACS)..." class="w-full pr-11 pl-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-cyan-500" />
+          </div>
+          <button type="button" onclick="askAIUnionsGuide()" class="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-emerald-600 hover:brightness-110 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shrink-0 transition">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>استفسر عن النقابات عبر AI</span>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button type="button" data-unions-scope="all" onclick="setUnionsScope('all', this)" class="union-scope-btn px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-cyan-600 text-white transition">الكل</button>
+          <button type="button" data-unions-scope="iraq-branches" onclick="setUnionsScope('iraq-branches', this)" class="union-scope-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-cyan-500/15 transition">كركوك وجميع محافظات العراق</button>
+          <button type="button" data-unions-scope="iraq-syndicate" onclick="setUnionsScope('iraq-syndicate', this)" class="union-scope-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-cyan-500/15 transition">نقابة الكيميائيين العراقية</button>
+          <button type="button" data-unions-scope="global" onclick="setUnionsScope('global', this)" class="union-scope-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-cyan-500/15 transition">النقابات والاتحادات العالمية والعربية</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Unions & Governorates Container -->
+      <div id="unionsContentContainer" class="space-y-6 min-w-0"></div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- WORKING PDF & SYLLABUS VIEWER / GENERATOR MODAL                        -->
+  <!-- ===================================================================== -->
+  <div id="pdfModalBackdrop" onclick="closePdfModal()" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div onclick="event.stopPropagation()" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl max-w-3xl w-full shadow-2xl overflow-hidden my-auto min-w-0">
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 bg-gradient-to-r from-emerald-700 via-teal-700 to-sky-700 text-white flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <div class="text-[11px] font-extrabold text-emerald-200">عارض ومولد ملفات PDF والمناهج المعتمد</div>
+          <h3 id="pdfModalTitle" class="font-black text-sm sm:text-lg truncate">عنوان الكتاب</h3>
+        </div>
+        <button type="button" onclick="closePdfModal()" class="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/25 flex items-center justify-center shrink-0 transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 sm:p-6 space-y-4 max-h-[70vh] overflow-y-auto text-xs sm:text-sm">
+        <div id="pdfModalStatusBanner" class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-800 dark:text-emerald-200 font-bold flex items-center gap-2">
+          <i class="fa-solid fa-circle-check text-emerald-500"></i>
+          <span>تم تجهيز وثيقة PDF المنهجية للعرض والطباعة والحفظ المباشر بدون أي أخطاء.</span>
+        </div>
+
+        <div id="pdfModalContent" class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-3 leading-relaxed break-words"></div>
+      </div>
+
+      <!-- Modal Actions Footer -->
+      <div class="p-4 sm:p-5 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex flex-wrap gap-2">
+          <button type="button" onclick="downloadCurrentPdfDocument()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-download"></i>
+            <span>حفظ / تنزيل ملف الوثيقة</span>
+          </button>
+          <button type="button" onclick="printCurrentPdfDocument()" class="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-print"></i>
+            <span>طباعة / حفظ كـ PDF</span>
+          </button>
+          <a id="pdfModalOfficialLink" href="https://manahj.edu.iq/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-extrabold text-xs flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-up-right-from-square"></i>
+            <span>الموقع الرسمي للوزارة</span>
+          </a>
+        </div>
+        <button type="button" onclick="closePdfModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 dark:hover:text-white">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- INTEGRATED AI CHEMISTRY ASSISTANT DRAWER                              -->
+  <!-- ===================================================================== -->
+  <div id="aiDrawerOverlay" onclick="closeAIDrawer()" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-xs"></div>
+  <aside id="aiDrawerPanel" class="fixed top-0 left-0 z-50 h-full w-full sm:w-[450px] max-w-full bg-white dark:bg-slate-900 border-r border-emerald-500/30 shadow-2xl transform -translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-4 sm:p-5 bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 text-white flex items-center justify-between gap-2 shrink-0">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-robot text-xl"></i>
+        </div>
+        <div class="min-w-0">
+          <h3 class="font-black text-sm sm:text-base truncate">المساعد الكيميائي الذكي</h3>
+          <p class="text-[11px] text-emerald-100 truncate">مصادر • اختبارات • حاسبة • مناهج العراق • نقابات</p>
+        </div>
+      </div>
+      <button type="button" onclick="closeAIDrawer()" class="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/25 flex items-center justify-center shrink-0 transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Optional Custom Gemini API Key Bar -->
+    <div class="px-3 py-2 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2 text-[11px] shrink-0">
+      <i class="fa-solid fa-key text-emerald-500 shrink-0"></i>
+      <input type="password" id="userGeminiKeyInput" oninput="saveUserGeminiKey()" placeholder="مفتاح Gemini API اختياري (يعمل تلقائياً بدون إدخال)" class="w-full bg-transparent outline-none text-xs text-slate-700 dark:text-slate-200" />
+    </div>
+
+    <!-- Quick Suggestions -->
+    <div class="p-2.5 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 flex flex-wrap gap-1.5 shrink-0">
+      <button type="button" onclick="sendQuickPrompt('ما هي مهام نقابة الكيميائيين العراقية وفرعها في كركوك والمحافظات؟')" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[11px] font-bold hover:border-emerald-500 transition">نقابة كركوك والعراق</button>
+      <button type="button" onclick="sendQuickPrompt('لخص لي الفصول الأساسية لكيمياء السادس العلمي العراقي مع أهم القوانين')" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[11px] font-bold hover:border-emerald-500 transition">ملخص السادس العلمي</button>
+      <button type="button" onclick="sendQuickPrompt('ما هي الفروقات بين التحليلات النفطية وتقنية الغاز في معاهد التدريب النفطي العراقية؟')" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[11px] font-bold hover:border-emerald-500 transition">معاهد النفط العراقية</button>
+    </div>
+
+    <!-- Chat History -->
+    <div id="aiChatBox" class="flex-grow p-4 overflow-y-auto space-y-3.5 text-xs sm:text-sm min-w-0">
+      <div class="flex items-start gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+          <i class="fa-solid fa-flask"></i>
+        </div>
+        <div class="bg-slate-100 dark:bg-slate-800 rounded-2xl rounded-tr-none p-3.5 text-slate-800 dark:text-slate-200 leading-relaxed break-words">
+          أهلاً بك في <strong>منصة الكيمياء الشاملة والذكاء الاصطناعي</strong> (صنع من قبل <strong>إبراهيم إسماعيل</strong>). اسألني عن أي مسألة كيميائية، معادلة، مصدر علمي، منهج عراقي، أو نقابات الكيميائيين وفروعها في كركوك والمحافظات.
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Form -->
+    <form onsubmit="handleChatFormSubmit(event)" class="p-3 sm:p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex gap-2 shrink-0">
+      <input type="text" id="aiChatPromptInput" placeholder="اكتب سؤالك الكيميائي هنا..." class="flex-grow px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-emerald-500 min-w-0" />
+      <button type="submit" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shrink-0">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </aside>
+
+  <!-- Non-blocking Toast Banner -->
+  <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden max-w-sm bg-slate-900 dark:bg-slate-800 text-white border border-emerald-500/40 px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 text-xs sm:text-sm font-bold">
+    <i id="toastBannerIcon" class="fa-solid fa-circle-check text-emerald-400 text-base shrink-0"></i>
+    <span id="toastBannerText" class="break-words"></span>
+  </div>
+
+  <!-- Footer with Prominent Credit to إبراهيم إسماعيل -->
+  <footer class="mt-10 bg-white dark:bg-slate-900/95 border-t border-emerald-500/20 py-6 overflow-x-hidden">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+      <div class="space-y-1 min-w-0">
+        <div class="text-sm font-black text-slate-900 dark:text-white">
+          منصة الكيمياء الشاملة والذكاء الاصطناعي
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          منصة تعليمية وعلمية مجانية بالكامل وخالية من الإعلانات — المصادر، الامتحانات، الحاسبة، المناهج العراقية، والنقابات.
+        </p>
+      </div>
+
+      <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-500/15 via-teal-500/15 to-sky-500/15 border border-emerald-500/35 text-emerald-800 dark:text-emerald-200 font-black text-xs sm:text-sm shadow-xs shrink-0">
+        <i class="fa-solid fa-atom text-emerald-600 dark:text-emerald-400"></i>
+        <span>صنع من قبل إبراهيم إسماعيل</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION SCRIPT                                                    -->
+  <!-- ===================================================================== -->
+  <script>
+    // -----------------------------------------------------------------------
+    // 1. THEME, FONT SIZE, NAVIGATION & TOAST UTILITIES
+    // -----------------------------------------------------------------------
+    let currentFontPercent = 100;
+    let activePdfDoc = null;
+    let lastCalculationSummary = "";
+
+    function showBanner(msg, isError = false) {
+      const box = document.getElementById('toastBanner');
+      const txt = document.getElementById('toastBannerText');
+      const ico = document.getElementById('toastBannerIcon');
+      txt.textContent = msg;
+      ico.className = isError
+        ? 'fa-solid fa-circle-exclamation text-rose-400 text-base shrink-0'
+        : 'fa-solid fa-circle-check text-emerald-400 text-base shrink-0';
+      box.classList.remove('hidden');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        box.classList.add('hidden');
+      }, 3600);
+    }
+
+    function toggleColorTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('themeIcon');
+      const isDark = html.classList.toggle('dark');
+      icon.className = isDark
+        ? 'fa-solid fa-sun text-sm sm:text-base'
+        : 'fa-solid fa-moon text-sm sm:text-base';
+      localStorage.setItem('chem_platform_theme', isDark ? 'dark' : 'light');
+    }
+
+    function adjustFontSize(step) {
+      if (step === 0) currentFontPercent = 100;
+      else currentFontPercent = Math.min(120, Math.max(85, currentFontPercent + step * 5));
+      document.documentElement.style.fontSize = currentFontPercent + '%';
+      showBanner(`حجم الخط الحالي: ${currentFontPercent}%`);
+    }
+
+    function switchSection(sectionKey) {
+      document.querySelectorAll('.platform-section').forEach(sec => sec.classList.add('hidden'));
+      const target = document.getElementById(`section-${sectionKey}`);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-gradient-to-r', 'from-emerald-600', 'to-teal-600', 'text-white', 'shadow-md', 'shadow-emerald-600/20', 'font-extrabold');
+        btn.classList.add('bg-slate-100', 'dark:bg-slate-800/90', 'text-slate-700', 'dark:text-slate-300', 'font-bold');
+      });
+
+      const activeBtn = document.getElementById(`nav-${sectionKey}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800/90', 'text-slate-700', 'dark:text-slate-300', 'font-bold');
+        activeBtn.classList.add('active', 'bg-gradient-to-r', 'from-emerald-600', 'to-teal-600', 'text-white', 'shadow-md', 'shadow-emerald-600/20', 'font-extrabold');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // -----------------------------------------------------------------------
+    // 2. AI ASSISTANT (LIVE GEMINI API WITH SMART CHEMISTRY FALLBACK)
+    // -----------------------------------------------------------------------
+    const defaultApiKey = "";
+    const GEMINI_ENDPOINT_MODEL = "gemini-3-flash-preview";
+
+    function saveUserGeminiKey() {
+      const val = document.getElementById('userGeminiKeyInput').value.trim();
+      localStorage.setItem('chem_user_gemini_key', val);
+    }
+
+    function getActiveApiKey() {
+      const stored = localStorage.getItem('chem_user_gemini_key') || '';
+      return stored.trim() || defaultApiKey;
+    }
+
+    function openAIDrawer() {
+      document.getElementById('aiDrawerOverlay').classList.remove('hidden');
+      document.getElementById('aiDrawerPanel').classList.remove('-translate-x-full');
+    }
+
+    function closeAIDrawer() {
+      document.getElementById('aiDrawerPanel').classList.add('-translate-x-full');
+      document.getElementById('aiDrawerOverlay').classList.add('hidden');
+    }
+
+    function buildSmartChemistryFallback(prompt) {
+      const p = prompt.toLowerCase();
+      if (p.includes('نقاب') || p.includes('كركوك') || p.includes('محافظ')) {
+        return `<strong>دليل نقابة الكيميائيين العراقية وفروعها:</strong><br>
+        • تُعنى <strong>نقابة الكيميائيين العراقية</strong> بتنظيم المهنة الكيميائية، منح الهويات المهنية، اعتماد المختبرات والفحوصات الكيميائية، ودعم الكيميائيين في القطاعين العام والخاص.<br>
+        • في <strong>محافظة كركوك</strong> (المعروفة بنشاطها النفطي والصناعي والزراعي)، يرتبط نشاط الكيميائيين بفحوصات النفط الخام والمشتقات، المختبرات التحليلية، البيئة، والجامعات والمعاهد النفطية.<br>
+        • كما تتوزع الفروع واللجان التنسيقية عبر بغداد والبصرة ونينوى وأربيل والسليمانية ودهوك والنجف وكربلاء وبابل والأنبار وديالى وذي قار وميسان والمثنى والديوانية وواسط وصلاح الدين.`;
+      }
+      if (p.includes('سادس') || p.includes('منهج') || p.includes('عراق')) {
+        return `<strong>ملخص المنهج العراقي للكيمياء:</strong><br>
+        • تبدأ الكيمياء في العراق من <strong>الأول والثاني والثالث المتوسط</strong> (الذرة، الجدول الدوري، الصيغ، المحاليل، الزمر، ومدخل العضوية)، ثم <strong>الرابع والخامس العلمي</strong> (المول، الغازات، الحركيات، الأروماتية)، وصولاً إلى <strong>السادس العلمي</strong> (الثرموديناميك، الاتزان الكيميائي والأيوني، الكهربائية، التناسقية، الحجمي، العضوية، والحياتية).`;
+      }
+      if (p.includes('نفط') || p.includes('تحليل')) {
+        return `<strong>الكيمياء في معاهد التدريب النفطي العراقية:</strong><br>
+        • تشمل <strong>التحليلات النفطية</strong> (فحص اللزوجة، الكثافة API، الكبريت، نقطة الوميض، والماء والأملاح)، <strong>التشغيل والسيطرة</strong> على وحدات التقطير والتحسين، و<strong>تقنية الغاز</strong> لمعالجة الغاز الطبيعي وإزالة H2S و CO2.`;
+      }
+      return `<strong>المساعد الكيميائي الذكي:</strong><br>
+      تم استلام سؤالك حول: <em>"${prompt}"</em>.<br>
+      • يمكنك استخدام <strong>الحاسبة الكيميائية</strong> لإجراء الحسابات الرقمية الفورية، أو <strong>بنك الأسئلة</strong> للتدريب التنافسي، أو تزويدي بتفاصيل أكثر عن المسألة أو الفصل المطلوب لشرحه خطوة بخطوة.`;
+    }
+
+    async function askGeminiText(prompt, systemInstruction = "أنت خبير كيمياء ومناهج عراقية وعالمية ونقابات الكيميائيين، أجب باللغة العربية بأسلوب واضح ومنظم.", jsonSchema = null) {
+      const key = getActiveApiKey();
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_ENDPOINT_MODEL}:generateContent?key=${encodeURIComponent(key)}`;
+
+      const body = {
+        contents: [{ parts: [{ text: prompt }] }],
+        systemInstruction: { parts: [{ text: systemInstruction }] }
+      };
+
+      if (jsonSchema) {
+        body.generationConfig = {
+          responseMimeType: "application/json",
+          responseSchema: jsonSchema
+        };
+      }
+
+      const backoffs = [800, 1600, 3200];
+      for (let i = 0; i <= backoffs.length; i++) {
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+          if (!res.ok) throw new Error(`Status ${res.status}`);
+          const data = await res.json();
+          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (!text) throw new Error("Empty text");
+          return text;
+        } catch (err) {
+          if (i === backoffs.length) {
+            if (jsonSchema) throw err;
+            return buildSmartChemistryFallback(prompt);
+          }
+          await new Promise(r => setTimeout(r, backoffs[i]));
+        }
+      }
+    }
+
+    function appendChatBubble(sender, html) {
+      const box = document.getElementById('aiChatBox');
+      const row = document.createElement('div');
+      row.className = sender === 'user' ? 'flex items-start justify-end gap-2' : 'flex items-start gap-2.5';
+
+      if (sender === 'user') {
+        row.innerHTML = `<div class="bg-emerald-600 text-white rounded-2xl rounded-tl-none p-3 max-w-[85%] leading-relaxed break-words">${html}</div>`;
+      } else {
+        row.innerHTML = `
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div class="bg-slate-100 dark:bg-slate-800 rounded-2xl rounded-tr-none p-3.5 max-w-[88%] text-slate-800 dark:text-slate-200 leading-relaxed break-words">${html}</div>
+        `;
+      }
+      box.appendChild(row);
+      box.scrollTop = box.scrollHeight;
+      return row;
+    }
+
+    function formatRichText(raw) {
+      return raw
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/`(.*?)`/g, '<code class="formula-ltr px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-xs">$1</code>')
+        .replace(/\n/g, '<br>');
+    }
+
+    async function sendQuickPrompt(text) {
+      openAIDrawer();
+      await runChatTurn(text);
+    }
+
+    async function handleChatFormSubmit(e) {
+      e.preventDefault();
+      const inp = document.getElementById('aiChatPromptInput');
+      const text = inp.value.trim();
+      if (!text) return;
+      inp.value = '';
+      await runChatTurn(text);
+    }
+
+    async function runChatTurn(text) {
+      appendChatBubble('user', text);
+      const pending = appendChatBubble('ai', '<i class="fa-solid fa-spinner fa-spin ml-1"></i> جاري تحليل السؤال الكيميائي...');
+      try {
+        const reply = await askGeminiText(text);
+        pending.lastElementChild.innerHTML = formatRichText(reply);
+      } catch (e) {
+        pending.lastElementChild.innerHTML = buildSmartChemistryFallback(text);
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. SECTION 1: VERIFIED SOURCES, RESEARCH & BOOKS LIBRARY
+    // -----------------------------------------------------------------------
+    const verifiedLibraryItems = [
+      {
+        id: 1,
+        category: "مناهج ومجلات عراقية",
+        title: "منهج الكيمياء للصف السادس العلمي — وزارة التربية العراقية",
+        sourceName: "المديرية العامة للمناهج / وزارة التربية العراقية",
+        badge: "معتمد وزارياً",
+        summary: "الكتاب الرسمي المعتمد لطلبة السادس العلمي في العراق (الثرموديناميك، الاتزان الكيميائي والأيوني، الكهربائية، التناسقية، التسحيح، العضوية، والحياتية).",
+        url: "https://manahj.edu.iq/"
+      },
+      {
+        id: 2,
+        category: "مناهج ومجلات عراقية",
+        title: "المجلة العراقية للعلوم — أبحاث الكيمياء والعلوم الصرفة",
+        sourceName: "جامعة بغداد — كلية العلوم (Iraqi Journal of Science)",
+        badge: "مجلة محكمة",
+        summary: "دورية علمية عراقية محكمة تنشر بحوث الكيمياء التحليلية والعضوية والفيزيائية واللاعضوية والبيئية للباحثين وطلبة الدراسات العليا.",
+        url: "https://ijs.uobaghdad.edu.iq/"
+      },
+      {
+        id: 3,
+        category: "قواعد بيانات وموسوعات",
+        title: "كتاب الذهب للمصطلحات الكيميائية (IUPAC Gold Book)",
+        sourceName: "الاتحاد الدولي للكيمياء البحتة والتطبيقية (IUPAC)",
+        badge: "مرجع دولي",
+        summary: "المصدر العالمي القياسي لتعريف المصطلحات الكيميائية، التسمية النظامية، والوحدات والرموز الكيميائية الدولية.",
+        url: "https://goldbook.iupac.org/"
+      },
+      {
+        id: 4,
+        category: "قواعد بيانات وموسوعات",
+        title: "قاعدة بيانات المركبات الكيميائية المفتوحة (PubChem)",
+        sourceName: "المعاهد الوطنية للصحة الأمريكية (NIH / NCBI)",
+        badge: "قاعدة بيانات",
+        summary: "موسوعة علمية مجانية تضم الصيغ الكيميائية، الأوزان الجزيئية، الخصائص الفيزيائية، والبيانات السمية لملايين المركبات.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/"
+      },
+      {
+        id: 5,
+        category: "قواعد بيانات وموسوعات",
+        title: "كتاب الويب الكيميائي القياسي (NIST Chemistry WebBook)",
+        sourceName: "المعهد الوطني للمعايير والتكنولوجيا (NIST - USA)",
+        badge: "بيانات مرجعية",
+        summary: "مرجع عالمي موثوق للبيانات الثرموديناميكية (ΔH°f, S°, Cp)، الأطياف الجزيئية (IR, Mass)، وثوابت التوازن الغازي.",
+        url: "https://webbook.nist.gov/chemistry/"
+      },
+      {
+        id: 6,
+        category: "الكيمياء العضوية",
+        title: "Organic Chemistry (Clayden, Greeves & Warren)",
+        sourceName: "دار نشر جامعة أكسفورد (Oxford University Press)",
+        badge: "مرجع جامعي",
+        summary: "مرجع أكاديمي بارز في الكيمياء العضوية يركز على ميكانيكيات التفاعل، الفراغية، والتحليل الطيفي.",
+        url: "https://global.oup.com/"
+      },
+      {
+        id: 7,
+        category: "الكيمياء التحليلية",
+        title: "Quantitative Chemical Analysis (Daniel C. Harris)",
+        sourceName: "دار نشر W. H. Freeman / Macmillan",
+        badge: "تحليل كمي وآلي",
+        summary: "مرجع شامل في التحليل الحجمي والوزني، الإحصاء التحليلي، الكروماتوغرافيا، والتحليل الطيفي والكهروكيميائي.",
+        url: "https://www.macmillanlearning.com/"
+      },
+      {
+        id: 8,
+        category: "الكيمياء الفيزيائية",
+        title: "Atkins' Physical Chemistry (Peter Atkins & Julio de Paula)",
+        sourceName: "دار نشر جامعة أكسفورد (Oxford University Press)",
+        badge: "كيمياء فيزيائية",
+        summary: "المرجع العالمي في الثرموديناميك، كيمياء الكم، التوازن الطوري، والحركية الكيميائية.",
+        url: "https://global.oup.com/"
+      },
+      {
+        id: 9,
+        category: "اللاعضوية والحياتية",
+        title: "Inorganic Chemistry & Lehninger Biochemistry",
+        sourceName: "Pearson / W. H. Freeman (المصادر الأكاديمية المعتمدة)",
+        badge: "لاعضوية وحياتية",
+        summary: "يغطي المركبات التناسقية ونظرية المجال البلوري واللاعضوية، والإنزيمات والأيض في الكيمياء الحياتية.",
+        url: "https://www.rsc.org/"
+      }
+    ];
+
+    let activeLibCategory = "all";
+
+    function selectLibCategory(cat, btnEl) {
+      activeLibCategory = cat;
+      document.querySelectorAll('.lib-pill').forEach(p => {
+        p.classList.remove('bg-emerald-600', 'text-white', 'font-extrabold');
+        p.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'font-bold');
+      });
+      if (btnEl) {
+        btnEl.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'font-bold');
+        btnEl.classList.add('bg-emerald-600', 'text-white', 'font-extrabold');
+      }
+      renderLibraryGrid();
+    }
+
+    function renderLibraryGrid() {
+      const q = (document.getElementById('libSearchInput').value || '').trim().toLowerCase();
+      const grid = document.getElementById('libraryGrid');
+      const items = verifiedLibraryItems.filter(it => {
+        const catOk = activeLibCategory === 'all' || it.category === activeLibCategory;
+        const txtOk = !q ||
+          it.title.toLowerCase().includes(q) ||
+          it.sourceName.toLowerCase().includes(q) ||
+          it.summary.toLowerCase().includes(q);
+        return catOk && txtOk;
+      });
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div class="col-span-full p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">لا توجد نتائج مطابقة لهذا البحث.</div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map(it => `
+        <article class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/50 transition flex flex-col justify-between gap-4 min-w-0">
+          <div class="space-y-3 min-w-0">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 text-[11px] font-extrabold">${it.category}</span>
+              <span class="text-[11px] font-bold text-slate-400">${it.badge}</span>
+            </div>
+
+            <h3 class="font-black text-sm sm:text-base text-slate-900 dark:text-white leading-snug break-words">${it.title}</h3>
+
+            <div class="p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/25 text-xs break-words">
+              <span class="text-slate-500 dark:text-slate-400 font-semibold">المصدر الموثق:</span>
+              <div class="font-extrabold text-sky-800 dark:text-sky-200 mt-0.5">${it.sourceName}</div>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed break-words">${it.summary}</p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2">
+            <a href="${it.url}" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs text-center flex items-center justify-center gap-1.5 transition">
+              <i class="fa-solid fa-up-right-from-square"></i>
+              <span>المصدر</span>
+            </a>
+            <button type="button" onclick="sendQuickPrompt('لخص لي أهم محاور المصدر (${it.title}) الصادر عن (${it.sourceName})')" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 transition">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>ملخص AI</span>
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function askAIForSources() {
+      const q = document.getElementById('libSearchInput').value.trim();
+      const prompt = q
+        ? `اذكر لي أهم المصادر والكتب والبحوث العلمية الموثقة (مع اسم المصدر والجهة أو المؤلف) حول: "${q}" في الكيمياء.`
+        : `رشح لي أهم 6 مصادر وكتب موثقة في الكيمياء (عراقية وعالمية) مع ذكر اسم كل مصدر ومؤلفه/جهته.`;
+      sendQuickPrompt(prompt);
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. SECTION 2: QUESTION BANK & COMPETITIVE EXAM SIMULATOR
+    // -----------------------------------------------------------------------
+    let examQuestionsBank = [
+      {
+        category: "تنافسي دراسات عليا",
+        topic: "الكيمياء التناسقية",
+        source: "أسئلة تنافسي الدراسات العليا — قسم الكيمياء",
+        question: "ما هو نوع التهجين والشكل الهندسي للمعقد [Ni(CN)4]2- علماً أن العدد الذري للنيكل Ni = 28؟",
+        options: [
+          "dsp2 — مربع مستوي (دايامغناطيسي)",
+          "sp3 — رباعي السطوح (بارامغناطيسي)",
+          "d2sp3 — ثماني السطوح",
+          "sp3d — مثلث هرمي مزدوج"
+        ],
+        correct: 0,
+        explanation: "أيون Ni2+ يمتلك 8 إلكترونات في الغلاف 3d. وجود ليكاند قوي ضاغط (CN-) يزدوج الإلكترونات المنفردة ليشغل أوربيتال d فارغاً، فيكون التهجين dsp2 والشكل مربع مستوي."
+      },
+      {
+        category: "وزاري وسنوات سابقة",
+        topic: "الثرموديناميك",
+        source: "الأسئلة الوزارية — السادس العلمي (العراق)",
+        question: "إذا كانت ΔH = -92 kJ/mol و ΔS = -180 J/K·mol لتفاعل ما عند 25°C، فهل التفاعل تلقائي؟",
+        options: [
+          "نعم تلقائي لأن ΔG سالبة (-38.36 kJ/mol)",
+          "لا غير تلقائي لأن ΔG موجبة",
+          "متزن تماماً عند 25°C",
+          "تلقائي فقط عند درجات الحرارة العالية جداً"
+        ],
+        correct: 0,
+        explanation: "نحول ΔS إلى kJ فتصبح -0.18 kJ/K·mol و T = 298 K. إذن ΔG = -92 - (298 × -0.18) = -92 + 53.64 = -38.36 kJ/mol، وبما أن الإشارة سالبة فالتفاعل تلقائي."
+      },
+      {
+        category: "وزاري وسنوات سابقة",
+        topic: "التوازن الأيوني",
+        source: "أسئلة وزارية حديثة — الفصل الثالث",
+        question: "ما قيمة pH لمحلول 0.01 M من حامض النتريك (HNO3) القوي؟",
+        options: ["2", "12", "1", "4"],
+        correct: 0,
+        explanation: "حامض HNO3 قوي أحادي البروتون يتأين كلياً، لذا [H+] = 0.01 = 10^-2 M، ومنه pH = -log(10^-2) = 2."
+      },
+      {
+        category: "أولمبياد وأسئلة ذكاء",
+        topic: "الكيمياء العضوية والأروماتية",
+        source: "مسائل الأولمبياد والذكاء الكيميائي",
+        question: "أي من الأنواع التالية يحقق قاعدة هوكل (4n + 2) للأروماتية؟",
+        options: [
+          "أيون السايكلوبنتاداينيل السالب (6 إلكترونات π)",
+          "السايكلوبيوتادايين الحلقي (4 إلكترونات π)",
+          "أيون الأليل الموجب غير الحلقي",
+          "الإيثيلين غير المتعاقب"
+        ],
+        correct: 0,
+        explanation: "أيون السايكلوبنتاداينيل السالب حلقي ومستوٍ ومتعاقب ويمتلك 6 إلكترونات π (حيث n = 1 في 4n + 2 = 6)."
+      },
+      {
+        category: "تنافسي دراسات عليا",
+        topic: "الكيمياء التحليلية",
+        source: "امتحان تنافسي — التحليل الآلي والكمي",
+        question: "في التحليل الطيفي وفق قانون بير-لامبرت (A = ε·b·c)، ماذا يحدث للامتصاصية (A) عند مضاعفة التركيز (c) مع ثبوت الخلية والطول الموجي؟",
+        options: [
+          "تتضاعف الامتصاصية طردياً",
+          "تقل إلى النصف",
+          "تبقى ثابتة تماماً",
+          "تزداد أربعة أضعاف"
+        ],
+        correct: 0,
+        explanation: "العلاقة بين الامتصاصية A والتركيز c خطية طردية مباشرة عند ثبوت معامل الامتصاص المولاري ε وطول المسار b."
+      },
+      {
+        category: "وزاري وسنوات سابقة",
+        topic: "الكيمياء الكهربائية",
+        source: "أسئلة وزارية — الفصل الرابع",
+        question: "ما جهد الخلية القياسي (E°cell) لخلية كاثودها +0.80 V وأنودها -0.76 V؟",
+        options: ["+1.56 V", "+0.04 V", "-1.56 V", "-0.04 V"],
+        correct: 0,
+        explanation: "E°cell = E°cathode - E°anode = 0.80 - (-0.76) = +1.56 V."
+      }
+    ];
+
+    try {
+      const savedQs = JSON.parse(localStorage.getItem('chem_ai_generated_qs') || '[]');
+      if (Array.isArray(savedQs) && savedQs.length) {
+        examQuestionsBank = [...savedQs, ...examQuestionsBank];
+      }
+    } catch (e) {}
+
+    function refreshExamCounters() {
+      document.getElementById('totalQuestionsInBank').textContent = examQuestionsBank.length;
+      document.getElementById('examHighScore').textContent = `${localStorage.getItem('chem_exam_high') || 0}%`;
+      document.getElementById('examCompletedCount').textContent = `الاختبارات المكتملة: ${localStorage.getItem('chem_exam_runs') || 0}`;
+    }
+
+    async function createAIQuestions() {
+      const topic = document.getElementById('aiQuestionTopicInput').value.trim();
+      if (!topic) {
+        showBanner('اكتب موضوعاً كيميائياً أولاً لتوليد الأسئلة.', true);
+        return;
+      }
+
+      const btn = document.getElementById('generateAiQuestionsBtn');
+      const oldHtml = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>جاري التوليد...</span>';
+
+      const schema = {
+        type: "ARRAY",
+        items: {
+          type: "OBJECT",
+          properties: {
+            question: { type: "STRING" },
+            options: { type: "ARRAY", items: { type: "STRING" } },
+            correct: { type: "INTEGER" },
+            explanation: { type: "STRING" }
+          },
+          required: ["question", "options", "correct", "explanation"]
+        }
+      };
+
+      try {
+        const raw = await askGeminiText(
+          `أنشئ 3 أسئلة اختيار من متعدد باللغة العربية في الكيمياء حول "${topic}" بمستوى تنافسي وتعليمي، لكل سؤال 4 خيارات، فهرس الإجابة الصحيحة (0 إلى 3)، وشرح واضح.`,
+          "أنت واضع أسئلة اختبارات تنافسية وتعليمية في الكيمياء.",
+          schema
+        );
+        const parsed = JSON.parse(raw).map(q => ({
+          category: "مولدة بالذكاء الاصطناعي",
+          topic: topic,
+          source: `توليد ذكي حول: ${topic}`,
+          question: q.question,
+          options: (q.options || []).slice(0, 4),
+          correct: Math.min(3, Math.max(0, Number(q.correct) || 0)),
+          explanation: q.explanation
+        }));
+
+        examQuestionsBank = [...parsed, ...examQuestionsBank];
+        const existing = JSON.parse(localStorage.getItem('chem_ai_generated_qs') || '[]');
+        localStorage.setItem('chem_ai_generated_qs', JSON.stringify([...parsed, ...existing]));
+
+        refreshExamCounters();
+        document.getElementById('examCategoryFilter').value = "مولدة بالذكاء الاصطناعي";
+        document.getElementById('aiQuestionTopicInput').value = '';
+        showBanner(`تم توليد ${parsed.length} أسئلة جديدة حول "${topic}"!`);
+      } catch (err) {
+        // Fallback question if network offline
+        const fallbackQ = {
+          category: "مولدة بالذكاء الاصطناعي",
+          topic: topic,
+          source: `مولد ذكي محلي — ${topic}`,
+          question: `أي من العبارات التالية يُعد الأكثر دقة فيما يتعلق بموضوع (${topic}) في الكيمياء؟`,
+          options: [
+            `يعتمد على القوانين والمبادئ الكمية والتركيبية المرتبطة بـ ${topic}`,
+            `لا يخضع لأي قواعد أو حسابات كيميائية`,
+            `يقتصر على المحاليل الصلبة فقط دون استثناء`,
+            `يلغي قوانين حفظ الكتلة والطاقة`
+          ],
+          correct: 0,
+          explanation: `يُبنى فهم (${topic}) على القوانين الكيميائية المعتمدة وحسابات التراكيز والخصائص المرتبطة به.`
+        };
+        examQuestionsBank = [fallbackQ, ...examQuestionsBank];
+        refreshExamCounters();
+        showBanner(`تمت إضافة سؤال تدريبي حول "${topic}".`);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = oldHtml;
+      }
+    }
+
+    let quizSession = [];
+    let quizIndex = 0;
+    let quizScore = 0;
+    let quizWrongTopics = [];
+    let quizAnswered = false;
+    let quizTimerId = null;
+    let quizSecondsLeft = 0;
+
+    function startCompetitiveQuiz() {
+      const cat = document.getElementById('examCategoryFilter').value;
+      const limit = parseInt(document.getElementById('examQuestionCount').value, 10);
+      const mode = document.getElementById('examModeSelect').value;
+
+      let pool = cat === 'all' ? [...examQuestionsBank] : examQuestionsBank.filter(q => q.category === cat);
+      if (!pool.length) pool = [...examQuestionsBank];
+
+      pool.sort(() => Math.random() - 0.5);
+      quizSession = pool.slice(0, Math.min(limit, pool.length));
+      quizIndex = 0;
+      quizScore = 0;
+      quizWrongTopics = [];
+
+      document.getElementById('examSetupBox').classList.add('hidden');
+      document.getElementById('quizSummaryBox').classList.add('hidden');
+      document.getElementById('quizStageBox').classList.remove('hidden');
+
+      if (quizTimerId) clearInterval(quizTimerId);
+      const timerBadge = document.getElementById('quizTimerBadge');
+      if (mode === 'timed') {
+        quizSecondsLeft = quizSession.length * 60;
+        timerBadge.classList.remove('hidden');
+        timerBadge.classList.add('flex');
+        renderTimerText();
+        quizTimerId = setInterval(() => {
+          quizSecondsLeft--;
+          renderTimerText();
+          if (quizSecondsLeft <= 0) {
+            clearInterval(quizTimerId);
+            finishQuizSession();
+          }
+        }, 1000);
+      } else {
+        timerBadge.classList.add('hidden');
+        timerBadge.classList.remove('flex');
+      }
+
+      renderQuizQuestion();
+    }
+
+    function renderTimerText() {
+      const m = Math.floor(quizSecondsLeft / 60).toString().padStart(2, '0');
+      const s = (quizSecondsLeft % 60).toString().padStart(2, '0');
+      document.getElementById('quizTimerDisplay').textContent = `${m}:${s}`;
+    }
+
+    function renderQuizQuestion() {
+      quizAnswered = false;
+      const q = quizSession[quizIndex];
+      document.getElementById('quizCounterBadge').textContent = `سؤال ${quizIndex + 1} من ${quizSession.length}`;
+      document.getElementById('quizCatBadge').textContent = q.category;
+      document.getElementById('quizScoreDisplay').textContent = quizScore;
+      document.getElementById('quizMetaSource').textContent = `${q.source} • ${q.topic}`;
+      document.getElementById('quizQuestionTitle').textContent = q.question;
+
+      document.getElementById('quizFeedbackBox').classList.add('hidden');
+      document.getElementById('quizNextBtn').classList.add('hidden');
+      document.getElementById('quizNextBtn').classList.remove('inline-flex');
+
+      const letters = ['أ', 'ب', 'ج', 'د'];
+      const list = document.getElementById('quizChoicesList');
+      list.innerHTML = q.options.map((opt, i) => `
+        <button type="button" onclick="chooseQuizAnswer(${i})" class="quiz-choice-btn w-full text-right p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/70 hover:border-emerald-500 transition flex items-center gap-3 font-bold text-xs sm:text-sm min-w-0">
+          <span class="w-7 h-7 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 flex items-center justify-center font-black text-xs shrink-0">${letters[i]}</span>
+          <span class="leading-relaxed break-words">${opt}</span>
+        </button>
+      `).join('');
+    }
+
+    function chooseQuizAnswer(idx) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      const q = quizSession[quizIndex];
+      const btns = document.querySelectorAll('.quiz-choice-btn');
+
+      btns.forEach((b, i) => {
+        b.disabled = true;
+        b.classList.remove('hover:border-emerald-500');
+        if (i === q.correct) {
+          b.classList.remove('border-slate-200', 'dark:border-slate-700', 'bg-slate-50', 'dark:bg-slate-800/70');
+          b.classList.add('border-emerald-500', 'bg-emerald-500/15', 'text-emerald-800', 'dark:text-emerald-200');
+        } else if (i === idx && idx !== q.correct) {
+          b.classList.remove('border-slate-200', 'dark:border-slate-700', 'bg-slate-50', 'dark:bg-slate-800/70');
+          b.classList.add('border-rose-500', 'bg-rose-500/15', 'text-rose-800', 'dark:text-rose-200');
+        }
+      });
+
+      const heading = document.getElementById('quizFeedbackHeading');
+      if (idx === q.correct) {
+        quizScore++;
+        document.getElementById('quizScoreDisplay').textContent = quizScore;
+        heading.innerHTML = '<span class="text-emerald-700 dark:text-emerald-300"><i class="fa-solid fa-circle-check ml-1"></i> إجابة صحيحة</span>';
+      } else {
+        quizWrongTopics.push(q.topic);
+        heading.innerHTML = '<span class="text-rose-700 dark:text-rose-300"><i class="fa-solid fa-circle-xmark ml-1"></i> إجابة غير صحيحة — الشرح التعليمي:</span>';
+      }
+
+      document.getElementById('quizFeedbackExplanation').textContent = q.explanation;
+      document.getElementById('quizFeedbackBox').classList.remove('hidden');
+
+      const nextBtn = document.getElementById('quizNextBtn');
+      nextBtn.classList.remove('hidden');
+      nextBtn.classList.add('inline-flex');
+      nextBtn.querySelector('span').textContent = quizIndex === quizSession.length - 1 ? 'عرض التقرير النهائي' : 'السؤال التالي';
+    }
+
+    function advanceQuizQuestion() {
+      if (quizIndex < quizSession.length - 1) {
+        quizIndex++;
+        renderQuizQuestion();
+      } else {
+        finishQuizSession();
+      }
+    }
+
+    function abortQuizToSetup() {
+      if (quizTimerId) clearInterval(quizTimerId);
+      resetQuizToSetup();
+    }
+
+    function finishQuizSession() {
+      if (quizTimerId) clearInterval(quizTimerId);
+      document.getElementById('quizStageBox').classList.add('hidden');
+      document.getElementById('quizSummaryBox').classList.remove('hidden');
+
+      const total = quizSession.length || 1;
+      const wrong = total - quizScore;
+      const pct = Math.round((quizScore / total) * 100);
+
+      document.getElementById('summaryPercent').textContent = `${pct}%`;
+      document.getElementById('summaryCorrect').textContent = quizScore;
+      document.getElementById('summaryWrong').textContent = wrong;
+
+      const prevHigh = parseInt(localStorage.getItem('chem_exam_high') || '0', 10);
+      if (pct > prevHigh) localStorage.setItem('chem_exam_high', String(pct));
+      const runs = parseInt(localStorage.getItem('chem_exam_runs') || '0', 10) + 1;
+      localStorage.setItem('chem_exam_runs', String(runs));
+      refreshExamCounters();
+
+      const uniqueWeak = [...new Set(quizWrongTopics)];
+      document.getElementById('summaryWeakText').textContent = uniqueWeak.length
+        ? `نقاط يُنصح بمراجعتها: ${uniqueWeak.join('، ')}.`
+        : "ممتاز! جميع الإجابات كانت صحيحة في هذه الجلسة.";
+    }
+
+    function resetQuizToSetup() {
+      document.getElementById('quizStageBox').classList.add('hidden');
+      document.getElementById('quizSummaryBox').classList.add('hidden');
+      document.getElementById('examSetupBox').classList.remove('hidden');
+    }
+
+    function askAIExplainCurrentQuestion() {
+      const q = quizSession[quizIndex];
+      if (!q) return;
+      sendQuickPrompt(`اشرح لي بالتفصيل السؤال التالي والإجابة الصحيحة (${q.options[q.correct]}):\n${q.question}`);
+    }
+
+    function askAIForWeakTopicsPlan() {
+      const uniqueWeak = [...new Set(quizWrongTopics)];
+      const txt = uniqueWeak.length ? uniqueWeak.join('، ') : 'المفاهيم الكيميائية العامة';
+      sendQuickPrompt(`ضع لي خطة مراجعة سريعة وأهم القوانين لمواضيع: ${txt}`);
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. SECTION 3: MULTI-BRANCH CHEMISTRY CALCULATOR (6 BRANCHES)
+    // -----------------------------------------------------------------------
+    function selectCalcBranch(branchKey, btnEl) {
+      document.querySelectorAll('.branch-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`branch-panel-${branchKey}`).classList.remove('hidden');
+
+      document.querySelectorAll('.calc-branch-tab').forEach(b => {
+        b.classList.remove('border-2', 'border-emerald-500', 'bg-emerald-500/15', 'text-emerald-800', 'dark:text-emerald-200', 'font-extrabold');
+        b.classList.add('border', 'border-slate-200', 'dark:border-slate-800', 'bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300', 'font-bold');
+      });
+
+      if (btnEl) {
+        btnEl.classList.remove('border', 'border-slate-200', 'dark:border-slate-800', 'bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300', 'font-bold');
+        btnEl.classList.add('border-2', 'border-emerald-500', 'bg-emerald-500/15', 'text-emerald-800', 'dark:text-emerald-200', 'font-extrabold');
+      }
+    }
+
+    function showCalcResult(title, law, steps, answer, logLabel) {
+      const card = document.getElementById('calcOutputCard');
+      card.classList.remove('items-center', 'text-center', 'border-dashed');
+      card.classList.add('items-stretch', 'text-right');
+      card.innerHTML = `
+        <div class="space-y-3 w-full">
+          <div class="text-xs font-black text-emerald-600 dark:text-emerald-400">${title}</div>
+          <div class="formula-ltr p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-center text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-300">${law}</div>
+          <div class="text-xs text-slate-600 dark:text-slate-300 space-y-1 leading-relaxed">${steps}</div>
+          <div class="formula-ltr p-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-sm sm:text-base text-center shadow-xs">${answer}</div>
+        </div>
+      `;
+      lastCalculationSummary = `${title} | ${law} | ${answer}`;
+      document.getElementById('aiExplainCalcBtn').classList.remove('hidden');
+
+      const logs = JSON.parse(localStorage.getItem('chem_calc_logs') || '[]');
+      logs.unshift(logLabel);
+      localStorage.setItem('chem_calc_logs', JSON.stringify(logs.slice(0, 6)));
+      renderCalcLog();
+    }
+
+    function renderCalcLog() {
+      const list = document.getElementById('calcLogList');
+      const logs = JSON.parse(localStorage.getItem('chem_calc_logs') || '[]');
+      if (!logs.length) {
+        list.innerHTML = '<div class="text-[11px] text-slate-400 italic">لا توجد عمليات مسجلة بعد.</div>';
+        return;
+      }
+      list.innerHTML = logs.map(item => `
+        <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60 text-slate-700 dark:text-slate-300 font-semibold truncate">${item}</div>
+      `).join('');
+    }
+
+    function clearCalcLog() {
+      localStorage.removeItem('chem_calc_logs');
+      renderCalcLog();
+      showBanner('تم مسح سجل الحسابات.');
+    }
+
+    function explainLastCalcAI() {
+      if (!lastCalculationSummary) return;
+      sendQuickPrompt(`اشرح لي خطوات ووحدات هذه العملية الكيميائية بالتفصيل:\n${lastCalculationSummary}`);
+    }
+
+    // Branch 1: Analytical
+    function buildAnalyticalInputs() {
+      const mode = document.getElementById('analyticalModeSelect').value;
+      const box = document.getElementById('analyticalFieldsBox');
+      if (mode === 'molarity') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div><label class="block text-xs font-bold mb-1">الكتلة m (g)</label><input type="number" step="any" id="an_m" placeholder="4.9" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الكتلة المولية M (g/mol)</label><input type="number" step="any" id="an_M" placeholder="98" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الحجم V (mL)</label><input type="number" step="any" id="an_V" placeholder="500" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runAnalyticalCalc()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm transition">احسب المولارية (M)</button>
+        `;
+      } else if (mode === 'normality') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div><label class="block text-xs font-bold mb-1">الكتلة m (g)</label><input type="number" step="any" id="an_nm" placeholder="3.16" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الكتلة المولية M (g/mol)</label><input type="number" step="any" id="an_nM" placeholder="158" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الجزء الفعال إيتا (η)</label><input type="number" step="any" id="an_eta" placeholder="5" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الحجم V (mL)</label><input type="number" step="any" id="an_nV" placeholder="250" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runAnalyticalCalc()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm transition">احسب العيارية (N) والكتلة المكافئة</button>
+        `;
+      } else if (mode === 'dilution') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div><label class="block text-xs font-bold mb-1">M1 (mol/L)</label><input type="number" step="any" id="an_M1" placeholder="12" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">V1 (mL)</label><input type="number" step="any" id="an_V1" placeholder="10" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">V2 (mL)</label><input type="number" step="any" id="an_V2" placeholder="500" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runAnalyticalCalc()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm transition">احسب M2 بعد التخفيف</button>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div><label class="block text-xs font-bold mb-1">كتلة المذاب (mg)</label><input type="number" step="any" id="an_mg" placeholder="20" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">حجم المحلول (L)</label><input type="number" step="any" id="an_L" placeholder="4" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runAnalyticalCalc()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm transition">احسب (ppm)</button>
+        `;
+      }
+    }
+
+    function runAnalyticalCalc() {
+      const mode = document.getElementById('analyticalModeSelect').value;
+      if (mode === 'molarity') {
+        const m = parseFloat(document.getElementById('an_m').value);
+        const M = parseFloat(document.getElementById('an_M').value);
+        const V = parseFloat(document.getElementById('an_V').value);
+        if (!m || !M || !V) return showBanner('يرجى إدخال جميع القيم.', true);
+        const n = m / M;
+        const molarity = n / (V / 1000);
+        showCalcResult("التركيز المولاري (Molarity)", "M = (m / M_wt) * (1000 / V_mL)",
+          `<div>• n = ${m} / ${M} = <strong>${n.toFixed(4)} mol</strong></div><div>• V = ${V / 1000} L</div>`,
+          `M = ${molarity.toFixed(4)} mol/L`, `M = ${molarity.toFixed(3)} M`);
+      } else if (mode === 'normality') {
+        const m = parseFloat(document.getElementById('an_nm').value);
+        const M = parseFloat(document.getElementById('an_nM').value);
+        const eta = parseFloat(document.getElementById('an_eta').value);
+        const V = parseFloat(document.getElementById('an_nV').value);
+        if (!m || !M || !eta || !V) return showBanner('يرجى إدخال جميع القيم.', true);
+        const em = M / eta;
+        const norm = (m / em) * (1000 / V);
+        showCalcResult("العيارية والكتلة المكافئة", "EM = M / eta | N = (m / EM) * (1000 / V_mL)",
+          `<div>• الكتلة المكافئة EM = <strong>${em.toFixed(3)} g/eq</strong></div>`,
+          `N = ${norm.toFixed(4)} eq/L`, `N = ${norm.toFixed(3)} N`);
+      } else if (mode === 'dilution') {
+        const M1 = parseFloat(document.getElementById('an_M1').value);
+        const V1 = parseFloat(document.getElementById('an_V1').value);
+        const V2 = parseFloat(document.getElementById('an_V2').value);
+        if (!M1 || !V1 || !V2) return showBanner('يرجى إدخال القيم.', true);
+        const M2 = (M1 * V1) / V2;
+        showCalcResult("قانون التخفيف", "M1 * V1 = M2 * V2",
+          `<div>• M2 = (${M1} * ${V1}) / ${V2}</div>`,
+          `M2 = ${M2.toFixed(4)} mol/L`, `M2 = ${M2.toFixed(3)} M`);
+      } else {
+        const mg = parseFloat(document.getElementById('an_mg').value);
+        const L = parseFloat(document.getElementById('an_L').value);
+        if (!mg || !L) return showBanner('يرجى إدخال القيم.', true);
+        const ppm = mg / L;
+        showCalcResult("جزء بالمليون (ppm)", "ppm = mg_solute / L_solution",
+          `<div>• ppm = ${mg} / ${L}</div>`, `${ppm.toFixed(3)} ppm`, `${ppm.toFixed(2)} ppm`);
+      }
+    }
+
+    // Branch 2: Equilibrium & pH
+    function buildEquilibriumInputs() {
+      const mode = document.getElementById('equilibriumModeSelect').value;
+      const box = document.getElementById('equilibriumFieldsBox');
+      if (mode === 'strong') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div><label class="block text-xs font-bold mb-1">النوع</label><select id="eq_st" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm"><option value="a1">حامض قوي أحادي (HCl)</option><option value="a2">حامض قوي ثنائي (H2SO4)</option><option value="b1">قاعدة قوية أحادية (NaOH)</option><option value="b2">قاعدة قوية ثنائية (Ba(OH)2)</option></select></div>
+            <div><label class="block text-xs font-bold mb-1">التركيز C (M)</label><input type="number" step="any" id="eq_sc" placeholder="0.01" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runEquilibriumCalc()" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-sm transition">احسب pH و pOH</button>
+        `;
+      } else if (mode === 'weak') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div><label class="block text-xs font-bold mb-1">النوع</label><select id="eq_wt" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm"><option value="acid">حامض ضعيف (Ka)</option><option value="base">قاعدة ضعيفة (Kb)</option></select></div>
+            <div><label class="block text-xs font-bold mb-1">التركيز C (M)</label><input type="number" step="any" id="eq_wc" placeholder="0.1" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">ثابت التفكك K</label><input type="number" step="any" id="eq_wk" placeholder="1.8e-5" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runEquilibriumCalc()" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-sm transition">احسب pH</button>
+        `;
+      } else if (mode === 'buffer') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div><label class="block text-xs font-bold mb-1">pKa</label><input type="number" step="any" id="eq_bpka" placeholder="4.74" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">تركيز الملح [Salt]</label><input type="number" step="any" id="eq_bsalt" placeholder="0.2" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">تركيز الحامض [Acid]</label><input type="number" step="any" id="eq_bacid" placeholder="0.1" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runEquilibriumCalc()" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-sm transition">احسب pH لبفر</button>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div><label class="block text-xs font-bold mb-1">نوع الملح</label><select id="eq_kt" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm"><option value="11">ثنائي الأيون (Ksp = s²)</option><option value="12">ثلاثي الأيون (Ksp = 4s³)</option></select></div>
+            <div><label class="block text-xs font-bold mb-1">قيمة Ksp</label><input type="number" step="any" id="eq_kv" placeholder="1.8e-10" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runEquilibriumCalc()" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-sm transition">احسب الذوبانية (s)</button>
+        `;
+      }
+    }
+
+    function runEquilibriumCalc() {
+      const mode = document.getElementById('equilibriumModeSelect').value;
+      if (mode === 'strong') {
+        const st = document.getElementById('eq_st').value;
+        const c = parseFloat(document.getElementById('eq_sc').value);
+        if (!c || c <= 0) return showBanner('أدخل تركيزاً موجباً.', true);
+        let pH, pOH;
+        if (st === 'a1') { pH = -Math.log10(c); pOH = 14 - pH; }
+        else if (st === 'a2') { pH = -Math.log10(2 * c); pOH = 14 - pH; }
+        else if (st === 'b1') { pOH = -Math.log10(c); pH = 14 - pOH; }
+        else { pOH = -Math.log10(2 * c); pH = 14 - pOH; }
+        showCalcResult("الأس الهيدروجيني (pH)", "pH = -log[H+] | pH + pOH = 14",
+          `<div>• pOH = <strong>${pOH.toFixed(3)}</strong></div>`, `pH = ${pH.toFixed(3)}`, `pH = ${pH.toFixed(2)}`);
+      } else if (mode === 'weak') {
+        const wt = document.getElementById('eq_wt').value;
+        const c = parseFloat(document.getElementById('eq_wc').value);
+        const k = parseFloat(document.getElementById('eq_wk').value);
+        if (!c || !k) return showBanner('أدخل التركيز والثابت.', true);
+        const x = Math.sqrt(k * c);
+        const pVal = -Math.log10(x);
+        const pH = wt === 'acid' ? pVal : (14 - pVal);
+        showCalcResult("اتزان إلكتروليت ضعيف", "x = sqrt(K * C)",
+          `<div>• تركيز الأيون = <strong>${x.toExponential(3)} M</strong></div>`, `pH = ${pH.toFixed(3)}`, `ضعيف pH = ${pH.toFixed(2)}`);
+      } else if (mode === 'buffer') {
+        const pka = parseFloat(document.getElementById('eq_bpka').value);
+        const salt = parseFloat(document.getElementById('eq_bsalt').value);
+        const acid = parseFloat(document.getElementById('eq_bacid').value);
+        if (isNaN(pka) || !salt || !acid) return showBanner('أدخل جميع القيم.', true);
+        const pH = pka + Math.log10(salt / acid);
+        showCalcResult("معادلة هندرسون-هاسلبالخ (بفر)", "pH = pKa + log([Salt] / [Acid])",
+          `<div>• [Salt]/[Acid] = ${(salt / acid).toFixed(3)}</div>`, `pH = ${pH.toFixed(3)}`, `بفر pH = ${pH.toFixed(2)}`);
+      } else {
+        const kt = document.getElementById('eq_kt').value;
+        const ksp = parseFloat(document.getElementById('eq_kv').value);
+        if (!ksp || ksp <= 0) return showBanner('أدخل Ksp موجبة.', true);
+        const s = kt === '11' ? Math.sqrt(ksp) : Math.cbrt(ksp / 4);
+        showCalcResult("الذوبانية المولارية (s)", kt === '11' ? "s = sqrt(Ksp)" : "s = cbrt(Ksp / 4)",
+          `<div>• Ksp = ${ksp.toExponential(2)}</div>`, `s = ${s.toExponential(3)} mol/L`, `s = ${s.toExponential(2)} M`);
+      }
+    }
+
+    // Branch 3: Thermo
+    function buildThermoInputs() {
+      const mode = document.getElementById('thermoModeSelect').value;
+      const box = document.getElementById('thermoFieldsBox');
+      if (mode === 'gibbs') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div><label class="block text-xs font-bold mb-1">ΔH (kJ/mol)</label><input type="number" step="any" id="th_dh" placeholder="-100" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">ΔS (J/K·mol)</label><input type="number" step="any" id="th_ds" placeholder="-200" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الحرارة T (°C)</label><input type="number" step="any" id="th_tc" value="25" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runThermoCalc()" class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-extrabold text-sm transition">احسب طاقة كبس الحرة (ΔG)</button>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div><label class="block text-xs font-bold mb-1">الكتلة m (g)</label><input type="number" step="any" id="th_qm" placeholder="100" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الحرارة النوعية c</label><input type="number" step="any" id="th_qc" value="4.184" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">ΔT (°C)</label><input type="number" step="any" id="th_qdt" placeholder="10" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runThermoCalc()" class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-extrabold text-sm transition">احسب الحرارة (q)</button>
+        `;
+      }
+    }
+
+    function runThermoCalc() {
+      const mode = document.getElementById('thermoModeSelect').value;
+      if (mode === 'gibbs') {
+        const dh = parseFloat(document.getElementById('th_dh').value);
+        const ds = parseFloat(document.getElementById('th_ds').value);
+        const tc = parseFloat(document.getElementById('th_tc').value);
+        if (isNaN(dh) || isNaN(ds) || isNaN(tc)) return showBanner('أدخل القيم.', true);
+        const tk = tc + 273.15;
+        const dg = dh - tk * (ds / 1000);
+        showCalcResult("طاقة كبس الحرة", "dG = dH - T * dS",
+          `<div>• T = ${tk.toFixed(2)} K | الحالة: <strong>${dg < 0 ? 'تلقائي' : 'غير تلقائي'}</strong></div>`,
+          `dG = ${dg.toFixed(3)} kJ/mol`, `dG = ${dg.toFixed(1)} kJ/mol`);
+      } else {
+        const m = parseFloat(document.getElementById('th_qm').value);
+        const c = parseFloat(document.getElementById('th_qc').value);
+        const dt = parseFloat(document.getElementById('th_qdt').value);
+        if (!m || !c || isNaN(dt)) return showBanner('أدخل القيم.', true);
+        const qJ = m * c * dt;
+        showCalcResult("كمية الحرارة", "q = m * c * dT",
+          `<div>• بالجول: ${qJ.toFixed(2)} J</div>`,
+          `q = ${(qJ / 1000).toFixed(3)} kJ`, `q = ${(qJ / 1000).toFixed(2)} kJ`);
+      }
+    }
+
+    // Branch 4: Electro
+    function buildElectroInputs() {
+      const mode = document.getElementById('electroModeSelect').value;
+      const box = document.getElementById('electroFieldsBox');
+      if (mode === 'ecell') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div><label class="block text-xs font-bold mb-1">E°cathode (V)</label><input type="number" step="any" id="el_c" placeholder="0.34" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">E°anode (V)</label><input type="number" step="any" id="el_a" placeholder="-0.76" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runElectroCalc()" class="w-full py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-sm transition">احسب E°cell</button>
+        `;
+      } else if (mode === 'nernst') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div><label class="block text-xs font-bold mb-1">E°cell (V)</label><input type="number" step="any" id="el_ne0" placeholder="1.10" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">عدد الإلكترونات n</label><input type="number" step="1" id="el_nn" placeholder="2" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">حاصل التفاعل Q</label><input type="number" step="any" id="el_nq" placeholder="0.01" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runElectroCalc()" class="w-full py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-sm transition">احسب Ecell</button>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div><label class="block text-xs font-bold mb-1">التيار I (A)</label><input type="number" step="any" id="el_fi" placeholder="9.65" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الزمن t (s)</label><input type="number" step="any" id="el_ft" placeholder="1000" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الكتلة المولية M</label><input type="number" step="any" id="el_fm" placeholder="63.5" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">التكافؤ e</label><input type="number" step="1" id="el_fe" placeholder="2" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runElectroCalc()" class="w-full py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-sm transition">احسب الكتلة المترسبة</button>
+        `;
+      }
+    }
+
+    function runElectroCalc() {
+      const mode = document.getElementById('electroModeSelect').value;
+      if (mode === 'ecell') {
+        const c = parseFloat(document.getElementById('el_c').value);
+        const a = parseFloat(document.getElementById('el_a').value);
+        if (isNaN(c) || isNaN(a)) return showBanner('أدخل الجهود.', true);
+        const res = c - a;
+        showCalcResult("جهد الخلية القياسي", "E0_cell = E0_cathode - E0_anode", "", `E0_cell = ${res.toFixed(3)} V`, `E0 = ${res.toFixed(2)} V`);
+      } else if (mode === 'nernst') {
+        const e0 = parseFloat(document.getElementById('el_ne0').value);
+        const n = parseFloat(document.getElementById('el_nn').value);
+        const q = parseFloat(document.getElementById('el_nq').value);
+        if (isNaN(e0) || !n || !q || q <= 0) return showBanner('أدخل القيم.', true);
+        const e = e0 - (0.0257 / n) * Math.log(q);
+        showCalcResult("معادلة نيرنست", "E = E0 - (0.0257 / n) * ln(Q)", "", `E = ${e.toFixed(4)} V`, `نيرنست E = ${e.toFixed(3)} V`);
+      } else {
+        const I = parseFloat(document.getElementById('el_fi').value);
+        const t = parseFloat(document.getElementById('el_ft').value);
+        const M = parseFloat(document.getElementById('el_fm').value);
+        const e = parseFloat(document.getElementById('el_fe').value);
+        if (!I || !t || !M || !e) return showBanner('أدخل القيم.', true);
+        const mass = (((I * t) / 96500) / e) * M;
+        showCalcResult("قانون فاراداي", "m = ((I * t) / (96500 * e)) * M", "", `m = ${mass.toFixed(4)} g`, `فاراداي m = ${mass.toFixed(3)} g`);
+      }
+    }
+
+    // Branch 5: Gases & Kinetics
+    function buildGasesInputs() {
+      const mode = document.getElementById('gasesModeSelect').value;
+      const box = document.getElementById('gasesFieldsBox');
+      if (mode === 'ideal') {
+        box.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div><label class="block text-xs font-bold mb-1">المولات n (mol)</label><input type="number" step="any" id="ga_n" placeholder="2" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الحرارة T (°C)</label><input type="number" step="any" id="ga_t" value="27" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+            <div><label class="block text-xs font-bold mb-1">الحجم V (L)</label><input type="number" step="any" id="ga_v" placeholder="10" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          </div>
+          <button type="button" onclick="runGasesCalc()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-extrabold text-sm transition">احسب الضغط P (atm)</button>
+        `;
+      } else {
+        box.innerHTML = `
+          <div><label class="block text-xs font-bold mb-1">ثابت السرعة k (s⁻¹)</label><input type="number" step="any" id="ga_k" placeholder="0.0231" class="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm" /></div>
+          <button type="button" onclick="runGasesCalc()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-extrabold text-sm transition">احسب عمر النصف (t1/2)</button>
+        `;
+      }
+    }
+
+    function runGasesCalc() {
+      const mode = document.getElementById('gasesModeSelect').value;
+      if (mode === 'ideal') {
+        const n = parseFloat(document.getElementById('ga_n').value);
+        const tc = parseFloat(document.getElementById('ga_t').value);
+        const v = parseFloat(document.getElementById('ga_v').value);
+        if (!n || isNaN(tc) || !v) return showBanner('أدخل القيم.', true);
+        const p = (n * 0.0821 * (tc + 273.15)) / v;
+        showCalcResult("الغاز المثالي", "P = (n * R * T) / V", "", `P = ${p.toFixed(3)} atm`, `P = ${p.toFixed(2)} atm`);
+      } else {
+        const k = parseFloat(document.getElementById('ga_k').value);
+        if (!k || k <= 0) return showBanner('أدخل k موجبة.', true);
+        const th = 0.693 / k;
+        showCalcResult("عمر النصف للمرتبة الأولى", "t_half = 0.693 / k", "", `t_half = ${th.toFixed(3)} s`, `t1/2 = ${th.toFixed(2)} s`);
+      }
+    }
+
+    // Branch 6: Molar Mass & Equation Balancer
+    const elementsTable = {
+      H: 1.008, He: 4.003, Li: 6.94, Be: 9.012, B: 10.81, C: 12.011, N: 14.007, O: 15.999,
+      F: 18.998, Ne: 20.18, Na: 22.99, Mg: 24.305, Al: 26.982, Si: 28.085, P: 30.974, S: 32.06,
+      Cl: 35.45, K: 39.098, Ca: 40.078, Ti: 47.867, Cr: 51.996, Mn: 54.938, Fe: 55.845,
+      Co: 58.933, Ni: 58.693, Cu: 63.546, Zn: 65.38, Br: 79.904, Ag: 107.87, I: 126.90, Ba: 137.33
+    };
+
+    function presetFormula(f) {
+      document.getElementById('molarInputFormula').value = f;
+      computeMolarMass();
+    }
+
+    function computeMolarMass() {
+      const rawFormula = document.getElementById('molarInputFormula').value.trim();
+      if (!rawFormula) return showBanner('اكتب صيغة كيميائية.', true);
+
+      try {
+        function parsePart(s) {
+          const map = {};
+          let idx = 0;
+          while (idx < s.length) {
+            if (s[idx] === '(') {
+              let depth = 1, j = idx + 1;
+              while (j < s.length && depth > 0) {
+                if (s[j] === '(') depth++;
+                if (s[j] === ')') depth--;
+                j++;
+              }
+              if (depth !== 0) throw new Error('أقواس غير متوازنة');
+              const sub = parsePart(s.slice(idx + 1, j - 1));
+              let num = '';
+              while (j < s.length && /\d/.test(s[j])) num += s[j++];
+              const mult = num ? parseInt(num, 10) : 1;
+              for (const el in sub) map[el] = (map[el] || 0) + sub[el] * mult;
+              idx = j;
+            } else if (/[A-Z]/.test(s[idx])) {
+              let sym = s[idx++];
+              while (idx < s.length && /[a-z]/.test(s[idx])) sym += s[idx++];
+              let num = '';
+              while (idx < s.length && /\d/.test(s[idx])) num += s[idx++];
+              const mult = num ? parseInt(num, 10) : 1;
+              if (!elementsTable[sym]) throw new Error(`عنصر غير معروف: ${sym}`);
+              map[sym] = (map[sym] || 0) + mult;
+            } else {
+              throw new Error('صيغة غير صالحة');
+            }
+          }
+          return map;
+        }
+
+        const counts = parsePart(rawFormula);
+        let total = 0;
+        const lines = [];
+        for (const [el, cnt] of Object.entries(counts)) {
+          const partMass = elementsTable[el] * cnt;
+          total += partMass;
+          lines.push(`<div>• <span class="formula-ltr">${el}</span>: ${cnt} × ${elementsTable[el]} = ${partMass.toFixed(3)} g/mol</div>`);
+        }
+
+        showCalcResult(`الكتلة المولية (${rawFormula})`, "M = sum(n_i * A_i)", lines.join(''),
+          `M = ${total.toFixed(3)} g/mol`, `${rawFormula}: ${total.toFixed(2)} g/mol`);
+      } catch (err) {
+        showBanner(err.message || 'تحقق من كتابة الصيغة الكيميائية.', true);
+      }
+    }
+
+    function balanceEquationAI() {
+      const eq = document.getElementById('equationInputBox').value.trim();
+      if (!eq) return showBanner('اكتب المعادلة الكيميائية أولاً.', true);
+      sendQuickPrompt(`وازن المعادلة الكيميائية التالية ووضح خطوات الموازنة ونوع التفاعل:\n${eq}`);
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. SECTION 4: IRAQI CURRICULUM BOOKS & STAGES (WORKING PDF VIEWER)
+    // -----------------------------------------------------------------------
+    const iraqiSchoolStages = [
+      {
+        stage: "الصف الأول المتوسط",
+        title: "كيمياء الأول المتوسط — المنهج العراقي",
+        ministry: "وزارة التربية العراقية — المديرية العامة للمناهج",
+        code: "IQ-CHEM-M1",
+        chapters: [
+          "المادة وخواصها (الحالات الفيزيائية، الكثافة، التغيرات الفيزيائية والكيميائية)",
+          "الذرات والعناصر والمركبات (العدد الذري والكتلي، الأيونات والجزيئات)",
+          "ترتيب العناصر في الجدول الدوري (الفلزات، اللافلزات، وأشباه الفلزات)",
+          "التفاعلات الكيميائية والمعادلات الرمزية الأولية"
+        ],
+        officialUrl: "https://manahj.edu.iq/"
+      },
+      {
+        stage: "الصف الثاني المتوسط",
+        title: "كيمياء الثاني المتوسط — المنهج العراقي",
+        ministry: "وزارة التربية العراقية — المديرية العامة للمناهج",
+        code: "IQ-CHEM-M2",
+        chapters: [
+          "العناصر والترابط الكيميائي (الأغلفة الإلكترونية، الآصرة الأيونية والتساهمية)",
+          "المركبات الكيميائية وخواصها والقوى بين الجزيئية",
+          "الصيغ والمعادلات الكيميائية والتكافؤ وأنواع التفاعلات",
+          "المحاليل والحوامض والقواعد والأملاح"
+        ],
+        officialUrl: "https://manahj.edu.iq/"
+      },
+      {
+        stage: "الصف الثالث المتوسط",
+        title: "كيمياء الثالث المتوسط — المنهج العراقي",
+        ministry: "وزارة التربية العراقية — المديرية العامة للمناهج",
+        code: "IQ-CHEM-M3",
+        chapters: [
+          "التركيب الذري للمادة، الترتيب الإلكتروني، رمز لويس، والخواص الدورية",
+          "الزمرتان الأولى والثانية (الصوديوم والكالسيوم ومركباتهما)",
+          "الزمرة الثالثة (الألمنيوم، استخلاصه، ومركباته)",
+          "المحاليل والتركيز، الزمرة الرابعة (السيليكون)، ومدخل العضوية (الميثان، الإثيلين، الأستيلين)",
+          "الزمرتان الخامسة والسادسة (النتروجين والكبريت) والزمرة السابعة (الكلور)"
+        ],
+        officialUrl: "https://manahj.edu.iq/"
+      },
+      {
+        stage: "الصف الرابع العلمي",
+        title: "كيمياء الرابع العلمي — المنهج العراقي",
+        ministry: "وزارة التربية العراقية — المديرية العامة للمناهج",
+        code: "IQ-CHEM-S4",
+        chapters: [
+          "المفاهيم الأساسية في الكيمياء (المول، الكتلة المولية، الصيغ الوضعية والجزيئية)",
+          "الغازات (قوانين الغازات، القانون الموحد، الغاز المثالي، والانتشار)",
+          "الحسابات الكيميائية والمادة المتفاعلة المحددة للناتج",
+          "الكيمياء العضوية (الألكانات، الألكينات، الألكاينات، التسمية النظامية)",
+          "الكيمياء النووية (النشاط الإشعاعي والتفاعلات النووية)"
+        ],
+        officialUrl: "https://manahj.edu.iq/"
+      },
+      {
+        stage: "الصف الخامس العلمي",
+        title: "كيمياء الخامس العلمي — المنهج العراقي",
+        ministry: "وزارة التربية العراقية — المديرية العامة للمناهج",
+        code: "IQ-CHEM-S5",
+        chapters: [
+          "تطور المفهوم الذري وأعداد الكم والترابط والتهجين والأشكال الهندسية",
+          "الجدول الدوري والعناصر الانتقالية والمحاليل والتراكيز",
+          "الحركيات الكيميائية (سرعة التفاعل، قانون السرعة، مرتبة التفاعل)",
+          "الحوامض والقواعد والأملاح، البوليمرات، الأروماتية، والكيمياء البيئية"
+        ],
+        officialUrl: "https://manahj.edu.iq/"
+      },
+      {
+        stage: "الصف السادس العلمي",
+        title: "كيمياء السادس العلمي — المنهج الوزاري العراقي",
+        ministry: "وزارة التربية العراقية — المديرية العامة للمناهج",
+        code: "IQ-CHEM-S6",
+        chapters: [
+          "الفصل 1: الثرموديناميك (الإنثالبي، قانون هيس، الإنتروبي، طاقة كبس ΔG)",
+          "الفصل 2: الاتزان الكيميائي (Kc و Kp وقاعدة لو شاتلييه)",
+          "الفصل 3: الاتزان الأيوني (pH، الأيون المشترك، بفر، والذوبانية Ksp)",
+          "الفصل 4: الكيمياء الكهربائية (خلايا دانيال، نيرنست، وقوانين فاراداي)",
+          "الفصل 5: الكيمياء التناسقية (VBT والعدد الذري الفعال)",
+          "الفصول 6-8: التحليل الحجمي، الكيمياء العضوية، والكيمياء الحياتية"
+        ],
+        officialUrl: "https://manahj.edu.iq/"
+      }
+    ];
+
+    const higherEducationTracks = [
+      {
+        badge: "4 مراحل دراسية • بكالوريوس علوم",
+        title: "كلية العلوم — قسم علوم الكيمياء",
+        accent: "emerald",
+        desc: "قسم أكاديمي متخصص في الجامعات العراقية يدرس الكيمياء العامة، التحليلية، العضوية، اللاعضوية، الفيزياوية، الحياتية، التناسقية، التحليل الآلي، الصناعية، والنفطية مع مشاريع التخرج.",
+        items: [
+          "المرحلة الأولى: الكيمياء العامة، التحليل الوصفي، أساسيات العضوية، الرياضيات والفيزياء.",
+          "المرحلة الثانية: الكيمياء العضوية المتقدمة، اللاعضوية، الفيزياوية (الغازات والثرموديناميك)، التحليل الكمي.",
+          "المرحلة الثالثة: الكيمياء الحياتية، التناسقية، التحليل الآلي، الحركية والكهربائية.",
+          "المرحلة الرابعة: الكيمياء الصناعية والنفطية، البوليمرات، الأطياف، وبحث التخرج."
+        ]
+      },
+      {
+        badge: "4 مراحل دراسية • علمي وتربوي",
+        title: "كلية التربية للعلوم الصرفة — قسم الكيمياء",
+        accent: "sky",
+        desc: "يجمع بين التأسيس العلمي الرصين في فروع الكيمياء الصرفة والتطبيقية وبين الإعداد التربوي وطرائق التدريس وإدارة المختبرات التعليمية.",
+        items: [
+          "المراحل الأولى والثانية: الكيمياء العامة، التحليلية، العضوية، اللاعضوية، الفيزياوية، والعلوم التربوية.",
+          "المراحل الثالثة والرابعة: الحياتية، التناسقية، التحليل الآلي، طرائق تدريس الكيمياء، والتطبيق الميداني."
+        ]
+      },
+      {
+        badge: "دبلوم تقني • سنتان (بغداد، كركوك، البصرة، بيجي)",
+        title: "معاهد التدريب النفطي العراقية وفروعها الكيميائية",
+        accent: "amber",
+        desc: "معاهد متخصصة تابعة لوزارة النفط العراقية تضم فروعاً كيميائية ونفطية عملية لرفد المصافي والحقول ومنشآت الغاز بالكوادر الفنية:",
+        items: [
+          "فرع التحليلات النفطية: فحص النفط الخام والمنتجات النفطية (اللزوجة، الكثافة API، الكبريت، الوميض، الماء والملح).",
+          "فرع التشغيل والسيطرة: تشغيل وحدات التقطير، تحسين البنزين، والسيطرة على أبراج التكرير.",
+          "فرع تقنية الغاز: معالجة الغاز الطبيعي، إزالة H2S و CO2، وإنتاج الغاز السائل LPG.",
+          "السلامة المهنية والبيئة ومعالجة المياه الصناعية المرتبطة بالعمليات النفطية."
+        ]
+      },
+      {
+        badge: "كليات وأقسام مرتبطة بالكيمياء في العراق",
+        title: "الأقسام الهندسية والطبية والتقنية الأخرى ذات الصلة بالكيمياء",
+        accent: "teal",
+        desc: "تعتمد تخصصات أخرى في الجامعات والمعاهد العراقية على الكيمياء بشكل جوهري:",
+        items: [
+          "الهندسة الكيمياوية وتكرير النفط والغاز: موازنة المادة والطاقة، انتقال الكتلة والحرارة، والمفاعلات.",
+          "كلية الصيدلة: الكيمياء الدوائية والعضوية الصيدلانية والتحليلية والحياتية.",
+          "التقنيات الطبية والتحليلات المرضية والأدلة الجنائية: الكيمياء السريرية، السموم، والتحليل الجنائي.",
+          "كلية الزراعة (علوم الأغذية وكيمياء التربة): كيمياء الأغذية، التربة، والأسمدة."
+        ]
+      }
+    ];
+
+    function switchCurriculumTab(tab) {
+      const schoolsView = document.getElementById('curriculum-schools-view');
+      const higherView = document.getElementById('curriculum-higher-view');
+      const btnSchools = document.getElementById('curr-btn-schools');
+      const btnHigher = document.getElementById('curr-btn-higher');
+
+      if (tab === 'schools') {
+        schoolsView.classList.remove('hidden');
+        higherView.classList.add('hidden');
+        btnSchools.className = "p-3.5 px-4 rounded-2xl font-extrabold text-xs sm:text-sm bg-emerald-600 text-white shadow-sm flex items-center justify-center gap-2 transition";
+        btnHigher.className = "p-3.5 px-4 rounded-2xl font-extrabold text-xs sm:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500/50 flex items-center justify-center gap-2 transition";
+      } else {
+        schoolsView.classList.add('hidden');
+        higherView.classList.remove('hidden');
+        btnHigher.className = "p-3.5 px-4 rounded-2xl font-extrabold text-xs sm:text-sm bg-emerald-600 text-white shadow-sm flex items-center justify-center gap-2 transition";
+        btnSchools.className = "p-3.5 px-4 rounded-2xl font-extrabold text-xs sm:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500/50 flex items-center justify-center gap-2 transition";
+      }
+    }
+
+    function renderCurriculumViews() {
+      const grid = document.getElementById('schoolBooksCardsGrid');
+      grid.innerHTML = iraqiSchoolStages.map((bk, idx) => `
+        <article class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/50 transition flex flex-col justify-between gap-4 min-w-0">
+          <div class="space-y-3 min-w-0">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="px-3 py-1 rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold">${bk.stage}</span>
+              <span class="formula-ltr text-[11px] font-semibold text-slate-400">${bk.code}</span>
+            </div>
+
+            <h3 class="font-black text-sm sm:text-base text-slate-900 dark:text-white break-words">${bk.title}</h3>
+            <div class="text-xs font-bold text-sky-700 dark:text-sky-300 break-words">${bk.ministry}</div>
+
+            <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 list-disc list-inside leading-relaxed">
+              ${bk.chapters.map(ch => `<li class="break-words">${ch}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2">
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" onclick="openStagePdfModal(${idx})" class="py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span>فتح / تحميل PDF</span>
+              </button>
+              <a href="${bk.officialUrl}" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-up-right-from-square"></i>
+                <span>الوزارة</span>
+              </a>
+            </div>
+            <button type="button" onclick="sendQuickPrompt('لخص لي (${bk.title}) وأعطني أهم التعاريف والتعاليل والقوانين')" class="w-full py-2 px-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 transition">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>شرح وتلخيص عبر AI</span>
+            </button>
+          </div>
+        </article>
+      `).join('');
+
+      const higherBox = document.getElementById('higherEdCardsContainer');
+      higherBox.innerHTML = higherEducationTracks.map(tr => `
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 min-w-0">
+          <div class="flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
+            <div class="space-y-1 min-w-0">
+              <span class="inline-block px-3 py-1 rounded-lg bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold">${tr.badge}</span>
+              <h3 class="font-black text-base sm:text-lg text-slate-900 dark:text-white break-words">${tr.title}</h3>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed break-words">${tr.desc}</p>
+            </div>
+            <button type="button" onclick="sendQuickPrompt('اشرح لي تفاصيل ومواد ومستقبل (${tr.title}) في العراق')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center gap-1.5 shrink-0 transition">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>دليل AI</span>
+            </button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            ${tr.items.map(line => `
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700/70 text-xs text-slate-700 dark:text-slate-300 leading-relaxed break-words">
+                <i class="fa-solid fa-angle-left text-emerald-500 ml-1.5"></i>${line}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openStagePdfModal(idx) {
+      const bk = iraqiSchoolStages[idx];
+      if (!bk) return;
+      activePdfDoc = bk;
+
+      document.getElementById('pdfModalTitle').textContent = bk.title;
+      document.getElementById('pdfModalOfficialLink').href = bk.officialUrl;
+      document.getElementById('pdfModalContent').innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-200 dark:border-slate-700">
+          <span class="font-black text-emerald-700 dark:text-emerald-300">${bk.stage} — ${bk.ministry}</span>
+          <span class="formula-ltr text-xs font-bold text-slate-500">CODE: ${bk.code}</span>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-300">
+          ملف المنهج والفصول الدراسية المعتمدة لـ <strong>${bk.title}</strong> ضمن منصة الكيمياء الشاملة (صنع من قبل إبراهيم إسماعيل):
+        </p>
+        <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
+          ${bk.chapters.map(c => `<li>${c}</li>`).join('')}
+        </ol>
+        <div class="p-3 rounded-xl bg-sky-500/10 border border-sky-500/25 text-xs text-sky-800 dark:text-sky-200">
+          يمكنك تنزيل نسخة نصية/وثائقية جاهزة فوراً عبر زر <strong>حفظ / تنزيل ملف الوثيقة</strong>، أو حفظها كـ PDF عبر زر <strong>طباعة / حفظ كـ PDF</strong>، أو الانتقال لبوابة الوزارة الرسمية.
+        </div>
+      `;
+
+      document.getElementById('pdfModalBackdrop').classList.remove('hidden');
+    }
+
+    function closePdfModal() {
+      document.getElementById('pdfModalBackdrop').classList.add('hidden');
+    }
+
+    function downloadCurrentPdfDocument() {
+      if (!activePdfDoc) return;
+      const plainText = [
+        `منصة الكيمياء الشاملة والذكاء الاصطناعي — صنع من قبل إبراهيم إسماعيل`,
+        `================================================================`,
+        `الكتاب / المرحلة: ${activePdfDoc.title}`,
+        `الجهة: ${activePdfDoc.ministry}`,
+        `الرمز: ${activePdfDoc.code}`,
+        `البوابة الرسمية: ${activePdfDoc.officialUrl}`,
+        ``,
+        `محاور وفصول المنهج:`,
+        ...activePdfDoc.chapters.map((c, i) => `${i + 1}. ${c}`)
+      ].join('\n');
+
+      const blob = new Blob([plainText], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${activePdfDoc.code}_Manhaj.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+      showBanner(`تم تنزيل وثيقة (${activePdfDoc.stage}) بنجاح.`);
+    }
+
+    function printCurrentPdfDocument() {
+      if (!activePdfDoc) return;
+      const win = window.open('', '_blank', 'width=800,height=650');
+      if (!win) {
+        showBanner('يرجى السماح بالنوافذ المنبثقة للطباعة أو الحفظ كـ PDF.', true);
+        return;
+      }
+      win.document.write(`
+        <html lang="ar" dir="rtl">
+        <head>
+          <meta charset="UTF-8" />
+          <title>${activePdfDoc.title}</title>
+          <style>
+            body { font-family: Arial, Tahoma, sans-serif; padding: 32px; line-height: 1.8; color: #0f172a; }
+            h1 { color: #047857; border-bottom: 2px solid #10b981; padding-bottom: 8px; }
+            .meta { color: #475569; margin-bottom: 18px; font-size: 14px; }
+            li { margin-bottom: 8px; }
+            .footer { margin-top: 28px; font-size: 12px; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 12px; }
+          </style>
+        </head>
+        <body>
+          <h1>${activePdfDoc.title}</h1>
+          <div class="meta"><strong>الجهة:</strong> ${activePdfDoc.ministry} | <strong>الرمز:</strong> ${activePdfDoc.code}</div>
+          <h3>محتويات وفصول المنهج:</h3>
+          <ol>${activePdfDoc.chapters.map(c => `<li>${c}</li>`).join('')}</ol>
+          <div class="footer">منصة الكيمياء الشاملة والذكاء الاصطناعي — صنع من قبل إبراهيم إسماعيل</div>
+        </body>
+        </html>
+      `);
+      win.document.close();
+      win.focus();
+      win.print();
+    }
+
+    function askIraqiStageAI() {
+      const stage = document.getElementById('iraqiStageSelector').value;
+      const topic = document.getElementById('iraqiTopicBox').value.trim();
+      const prompt = topic
+        ? `اشرح لي موضوع "${topic}" في (${stage}) حسب المنهج العراقي مع أهم القوانين والتعاريف والتعاليل.`
+        : `قدم لي ملخصاً شاملاً لأهم مواضيع (${stage}) حسب المنهج العراقي.`;
+      sendQuickPrompt(prompt);
+    }
+
+    // -----------------------------------------------------------------------
+    // 7. SECTION 5: GLOBAL & IRAQI UNIONS + KIRKUK & ALL GOVERNORATES
+    // -----------------------------------------------------------------------
+    const iraqSyndicateInfo = {
+      scope: "iraq-syndicate",
+      title: "نقابة الكيميائيين العراقية (Iraqi Chemists Syndicate)",
+      subtitle: "الهيئة المهنية والنقابية الجامعة للكيميائيين في العراق لتنظيم المهنة وحماية حقوق الكيميائيين والارتقاء بالمعايير المختبرية والصناعية.",
+      roles: [
+        "تسجيل ومنح الهويات المهنية للكيميائيين خريجي كليات العلوم والعلوم الصرفة والتخصصات الكيميائية المعتمدة.",
+        "متابعة المعايير المهنية في المختبرات الكيميائية، المصافي، المصانع، الرقابة الصحية والبيئية، والقطاع الخاص.",
+        "إقامة الندوات والدورات العلمية والتدريبية بالتعاون مع الجامعات والمؤسسات البحثية والقطاع النفطي والصناعي.",
+        "العمل على تعزيز مكانة الكيميائي والارتقاء بالخدمات المهنية والاجتماعية للأعضاء عبر الفروع واللجان."
+      ]
+    };
+
+    const globalUnionsList = [
+      {
+        scope: "global",
+        region: "عالمي",
+        name: "الاتحاد الدولي للكيمياء البحتة والتطبيقية (IUPAC)",
+        role: "المرجع العالمي لتوحيد التسميات الكيميائية، المصطلحات، الكتل الذرية، والرموز العلمية الدولية."
+      },
+      {
+        scope: "global",
+        region: "عالمي / أمريكا",
+        name: "الجمعية الكيميائية الأمريكية (American Chemical Society - ACS)",
+        role: "إحدى أكبر الجمعيات الكيميائية في العالم؛ تدعم الأبحاث، التعليم الكيميائي، النشر العلمي، ومعايير السلامة المختبرية."
+      },
+      {
+        scope: "global",
+        region: "عالمي / بريطانيا",
+        name: "الجمعية الملكية للكيمياء (Royal Society of Chemistry - RSC)",
+        role: "هيئة عريقة تدعم علوم الكيمياء، النشر العلمي، قواعد البيانات الكيميائية، وتطوير الكيمياء المستدامة."
+      },
+      {
+        scope: "global",
+        region: "إقليمي / عربي",
+        name: "اتحاد الكيميائيين العرب (Arab Chemists Union)",
+        role: "يجمع الهيئات والجمعيات والنقابات الكيميائية العربية لتنسيق المصطلحات العلمية والبحوث والصناعات الكيميائية."
+      }
+    ];
+
+    const kirkukAndGovernorates = [
+      {
+        gov: "كركوك",
+        highlight: true,
+        focus: "النشاط النفطي والصناعي والزراعي والجامعي",
+        notes: "فرع وتمثيل مهني للكيميائيين في محافظة كركوك؛ يرتبط بمختبرات الفحوصات النفطية، التصفية والغاز، البيئة، الصحة، والجامعات والمعاهد في كركوك."
+      },
+      {
+        gov: "بغداد",
+        highlight: false,
+        focus: "المركز الرئيسي والمؤسسات الأكاديمية والصحية والصناعية",
+        notes: "المركز الإداري والتنظيمي والجامعات والمختبرات المركزية والهيئات الصناعية والبحثية."
+      },
+      {
+        gov: "البصرة",
+        highlight: false,
+        focus: "القطاع النفطي والبتروكيمياويات والموانئ والبيئة",
+        notes: "تركز واسع على كيمياء النفط والغاز، البتروكيمياويات، الفحوصات البحرية والبيئية، والمختبرات التخصصية."
+      },
+      {
+        gov: "نينوى (الموصل)",
+        highlight: false,
+        focus: "الجامعات، المختبرات، والصناعات والبيئة",
+        notes: "تمثيل للكيميائيين في الموصل والمختبرات التعليمية والصحية والصناعية والبيئية."
+      },
+      {
+        gov: "أربيل",
+        highlight: false,
+        focus: "الجامعات، المختبرات، والقطاع الصناعي والبيئي",
+        notes: "نشاط أكاديمي ومختبري وتخصصي في فروع الكيمياء والرقابة النوعية والبيئة."
+      },
+      {
+        gov: "السليمانية",
+        highlight: false,
+        focus: "الجامعات، المختبرات، والبحث الكيميائي والبيئي",
+        notes: "نشاط علمي ومختبري في الكيمياء التحليلية والعضوية والبيئية والرقابة الصحية."
+      },
+      {
+        gov: "دهوك",
+        highlight: false,
+        focus: "المختبرات، التعليم، والرقابة النوعية",
+        notes: "تمثيل كيميائي في المختبرات التعليمية والرقابة الصحية والبيئية والزراعية."
+      },
+      {
+        gov: "النجف الأشرف",
+        highlight: false,
+        focus: "المختبرات، الجامعات، والرقابة الدوائية والغذائية",
+        notes: "نشاط للكيميائيين في المختبرات الصحية والبيئية والجامعية والرقابة النوعية."
+      },
+      {
+        gov: "كربلاء المقدسة",
+        highlight: false,
+        focus: "فحوصات المياه والبيئة والمختبرات والجامعات",
+        notes: "اهتمام خاص بفحوصات المياه والبيئة والمختبرات السريرية والجامعية والخدمية."
+      },
+      {
+        gov: "بابل",
+        highlight: false,
+        focus: "الجامعات، الصناعات، والمختبرات والزراعة",
+        notes: "تمثيل للكيميائيين في الكليات العلمية والمختبرات الصناعية والزراعية والبيئية."
+      },
+      {
+        gov: "الأنبار",
+        highlight: false,
+        focus: "الجامعات، المختبرات، والصناعات والبيئة",
+        notes: "نشاط أكاديمي ومختبري في فروع الكيمياء والرقابة النوعية والبيئية."
+      },
+      {
+        gov: "ديالى",
+        highlight: false,
+        focus: "المختبرات، الزراعة، والرقابة البيئية والجامعية",
+        notes: "تمثيل للكيميائيين في المختبرات التعليمية والصحية والزراعية والبيئية."
+      },
+      {
+        gov: "ذي قار",
+        highlight: false,
+        focus: "الجامعات، المختبرات، والقطاع النفطي والبيئي",
+        notes: "نشاط كيميائي في المختبرات والجامعات والرقابة البيئية والنفطية."
+      },
+      {
+        gov: "ميسان",
+        highlight: false,
+        focus: "القطاع النفطي، المختبرات، والبيئة",
+        notes: "تمثيل للكيميائيين في الفحوصات المختبرية والبيئية والعمليات النفطية والخدمية."
+      },
+      {
+        gov: "المثنى",
+        highlight: false,
+        focus: "المختبرات، الصناعة، والرقابة النوعية",
+        notes: "نشاط كيميائي في المختبرات والرقابة الغذائية والبيئية والجامعية."
+      },
+      {
+        gov: "الديوانية (القادسية)",
+        highlight: false,
+        focus: "الجامعات، المختبرات، والرقابة الصحية والزراعية",
+        notes: "تمثيل للكيميائيين في المختبرات والجامعات والرقابة البيئية والصحية."
+      },
+      {
+        gov: "واسط",
+        highlight: false,
+        focus: "المختبرات، الزراعة، والرقابة البيئية والخدمية",
+        notes: "نشاط للكيميائيين في المختبرات والجامعات والرقابة النوعية والبيئية."
+      },
+      {
+        gov: "صلاح الدين",
+        highlight: false,
+        focus: "التصفية والنفط، المختبرات، والجامعات",
+        notes: "تمثيل للكيميائيين في المختبرات والعمليات التصفوية والجامعية والبيئية."
+      }
+    ];
+
+    let activeUnionsScope = "all";
+
+    function setUnionsScope(scope, btnEl) {
+      activeUnionsScope = scope;
+      document.querySelectorAll('.union-scope-btn').forEach(b => {
+        b.classList.remove('bg-cyan-600', 'text-white', 'font-extrabold');
+        b.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'font-bold');
+      });
+      if (btnEl) {
+        btnEl.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'font-bold');
+        btnEl.classList.add('bg-cyan-600', 'text-white', 'font-extrabold');
+      }
+      renderUnionsSection();
+    }
+
+    function renderUnionsSection() {
+      const q = (document.getElementById('unionSearchInput').value || '').trim().toLowerCase();
+      const box = document.getElementById('unionsContentContainer');
+      const parts = [];
+
+      // 1. Iraqi Chemists Syndicate Card
+      const matchSyndicate =
+        (activeUnionsScope === 'all' || activeUnionsScope === 'iraq-syndicate') &&
+        (!q || iraqSyndicateInfo.title.toLowerCase().includes(q) || iraqSyndicateInfo.subtitle.toLowerCase().includes(q) || 'العراق'.includes(q) || 'نقابة'.includes(q));
+
+      if (matchSyndicate) {
+        parts.push(`
+          <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border-2 border-emerald-500/35 shadow-sm space-y-4 min-w-0">
+            <div class="flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div class="space-y-1 min-w-0">
+                <span class="inline-block px-3 py-1 rounded-lg bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold">النقابة الوطنية في العراق</span>
+                <h3 class="font-black text-base sm:text-xl text-slate-900 dark:text-white break-words">${iraqSyndicateInfo.title}</h3>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed break-words">${iraqSyndicateInfo.subtitle}</p>
+              </div>
+              <button type="button" onclick="sendQuickPrompt('ما هي شروط ومهام الانتماء إلى نقابة الكيميائيين العراقية وفروعها؟')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center gap-1.5 shrink-0 transition">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>تفاصيل عبر AI</span>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              ${iraqSyndicateInfo.roles.map(r => `
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700/70 text-xs text-slate-700 dark:text-slate-300 leading-relaxed break-words">
+                  <i class="fa-solid fa-check-circle text-emerald-500 ml-1.5"></i>${r}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `);
+      }
+
+      // 2. Kirkuk & All Iraqi Governorates
+      const filteredGovs = kirkukAndGovernorates.filter(g =>
+        !q || g.gov.toLowerCase().includes(q) || g.focus.toLowerCase().includes(q) || g.notes.toLowerCase().includes(q)
+      );
+
+      if ((activeUnionsScope === 'all' || activeUnionsScope === 'iraq-branches') && filteredGovs.length) {
+        parts.push(`
+          <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 min-w-0">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div>
+                <h3 class="font-black text-base sm:text-lg text-slate-900 dark:text-white">
+                  <i class="fa-solid fa-map-location-dot text-cyan-500 ml-1.5"></i>
+                  فروع وتمثيل الكيميائيين في كركوك وجميع محافظات العراق (${filteredGovs.length})
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">تم إبراز محافظة كركوك وجميع المحافظات العراقية مع مجالات العمل الكيميائي.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 min-w-0">
+              ${filteredGovs.map(g => `
+                <div class="p-4 rounded-2xl border ${g.highlight ? 'border-2 border-amber-500 bg-amber-500/10 dark:bg-amber-500/15' : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60'} space-y-2 min-w-0">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="font-black text-sm text-slate-900 dark:text-white">${g.gov}</span>
+                    ${g.highlight
+                      ? '<span class="px-2.5 py-0.5 rounded-full bg-amber-500 text-slate-950 font-black text-[10px]">كركوك</span>'
+                      : '<span class="px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 font-bold text-[10px]">محافظة عراقية</span>'}
+                  </div>
+                  <div class="text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 break-words">${g.focus}</div>
+                  <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed break-words">${g.notes}</p>
+                  <button type="button" onclick="sendQuickPrompt('ما هي أبرز مجالات عمل الكيميائيين ونشاط الفروع والمختبرات في محافظة (${g.gov})؟')" class="text-[11px] font-extrabold text-sky-600 dark:text-sky-400 hover:underline pt-1 inline-flex items-center gap-1">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>استفسر عن ${g.gov} عبر AI</span>
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `);
+      }
+
+      // 3. Global & Arab Unions
+      const filteredGlobal = globalUnionsList.filter(u =>
+        !q || u.name.toLowerCase().includes(q) || u.region.toLowerCase().includes(q) || u.role.toLowerCase().includes(q)
+      );
+
+      if ((activeUnionsScope === 'all' || activeUnionsScope === 'global') && filteredGlobal.length) {
+        parts.push(`
+          <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 min-w-0">
+            <h3 class="font-black text-base sm:text-lg text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
+              <i class="fa-solid fa-earth-americas text-emerald-500 ml-1.5"></i>
+              النقابات والجمعيات والاتحادات الكيميائية العالمية والعربية
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 min-w-0">
+              ${filteredGlobal.map(u => `
+                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80 space-y-2 min-w-0">
+                  <span class="inline-block px-2.5 py-0.5 rounded-lg bg-sky-500/15 text-sky-700 dark:text-sky-300 text-[11px] font-extrabold">${u.region}</span>
+                  <h4 class="font-black text-sm text-slate-900 dark:text-white break-words">${u.name}</h4>
+                  <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed break-words">${u.role}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `);
+      }
+
+      box.innerHTML = parts.length
+        ? parts.join('')
+        : `<div class="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">لم يتم العثور على نتائج مطابقة لبحثك.</div>`;
+    }
+
+    function askAIUnionsGuide() {
+      const q = document.getElementById('unionSearchInput').value.trim();
+      const prompt = q
+        ? `أعطني معلومات دقيقة حول "${q}" فيما يخص نقابات الكيميائيين أو فروعها في كركوك ومحافظات العراق أو الاتحادات العالمية.`
+        : `لخص لي أدوار نقابة الكيميائيين العراقية وفروعها في كركوك والمحافظات العراقية والاتحادات الكيميائية العالمية.`;
+      sendQuickPrompt(prompt);
+    }
+
+    // -----------------------------------------------------------------------
+    // 8. INITIALIZATION
+    // -----------------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('chem_platform_theme');
+      const icon = document.getElementById('themeIcon');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+        icon.className = 'fa-solid fa-moon text-sm sm:text-base';
+      } else {
+        document.documentElement.classList.add('dark');
+        icon.className = 'fa-solid fa-sun text-sm sm:text-base';
+      }
+
+      const savedKey = localStorage.getItem('chem_user_gemini_key') || '';
+      if (savedKey) document.getElementById('userGeminiKeyInput').value = savedKey;
+
+      renderLibraryGrid();
+      refreshExamCounters();
+
+      buildAnalyticalInputs();
+      buildEquilibriumInputs();
+      buildThermoInputs();
+      buildElectroInputs();
+      buildGasesInputs();
+      renderCalcLog();
+
+      renderCurriculumViews();
+      renderUnionsSection();
+    });
+  </script>
+</body>
+</html>
+```
